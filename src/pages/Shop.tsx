@@ -182,7 +182,7 @@ export default function Shop() {
             </div>
           </Link>
      
-{/* 
+
           <div className="flex-1">
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {products.map((product) => (
@@ -220,14 +220,7 @@ export default function Shop() {
                         )}
                       </div>
                     </Link>
- */}
-                    <div className="mt-4 space-y-1">
-                      <Link 
-                        to={`/product/${product.productId}`} 
-                        className="block text-sm font-medium hover:text-black transition-colors duration-200"
-                      >
-                        {product.productTitle}
-                      </Link>
+
 
                       {product.instock === 'Out of Stock' && (
                         <p className="text-red-500 text-xs font-medium">Out of Stock</p>
