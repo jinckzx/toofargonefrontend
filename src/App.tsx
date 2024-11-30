@@ -1,75 +1,85 @@
 
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import Navbar from './components/Navbar';
-// import Footer from './components/Footer'; // Import the Footer component
-// import Home from './pages/Home';
-// import Shop from './pages/Shop';
-// import Lookbook from './pages/Lookbook'; // Import Lookbook component
-// import AboutUs from './pages/AboutUs';
-// import Cart from './pages/Cart';
-// import Checkout from './pages/Checkout';
-// import Shipping from './pages/Shipping'; // Import Shipping Policy page
-// import PrivacyPolicy from './pages/PrivacyPolicy'; // Import Privacy Policy page
-// import TermsOfService from './pages/TermsOfService'; // Import Terms of Service page
-
-// import { CartProvider } from './context/CartContext';
-
-// function App() {
-//   return (
-//     <Router>
-//       <CartProvider>
-//         <div className="min-h-screen bg-[#fafafa] flex flex-col ">
-//           <Navbar />
-//           <div className="mb-20">
-//           <main className="flex-grow">
-//             <Routes>
-//               <Route path="/" element={<Home />} />
-//               <Route path="/shop" element={<Shop />} />
-//               <Route path="/lookbook" element={<Lookbook />} />
-//               <Route path="/about" element={<AboutUs />} />
-//               <Route path="/cart" element={<Cart />} />
-//               <Route path="/checkout" element={<Checkout />} />
-//               <Route path="/shipping-policy" element={<Shipping />} />
-//               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-//               <Route path="/terms-of-service" element={<TermsOfService />} />
-//             </Routes>
-//           </main>
-//           </div>
-//           <Footer /> {/* Ensure Footer is properly imported */}
-//         </div>
-//       </CartProvider>
-//     </Router>
-//   );
-// }
-
-// export default App;
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
 import Navbar from './components/Navbar';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Footer from './components/Footer'; // Import the Footer component
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
-import Lookbook from './pages/Lookbook'; // Import Lookbook component
+import Lookbook from './pages/Lookbook';
 import AboutUs from './pages/AboutUs';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
-import Shipping from './pages/Shipping'; // Import Shipping Policy page
-import PrivacyPolicy from './pages/PrivacyPolicy'; // Import Privacy Policy page
-import TermsOfService from './pages/TermsOfService'; // Import Terms of Service page
-import ProductDetail from './pages/ProductDetail'; // Import Product Detail page
-import OrderConfirmation from './pages/OrderConfirmation'; // Import Order
-import NotFound from './pages/NotFound'; // Import 404 page
-import TrackOrder from './pages/TrackOrder'; // Import Track Order
+import Shipping from './pages/Shipping';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import ProductDetail from './pages/ProductDetail';
+import OrderConfirmation from './pages/OrderConfirmation';
+import NotFound from './pages/NotFound';
+import TrackOrder from './pages/TrackOrder';
 import { CartProvider } from './context/CartContext';
 
+interface CartPreviewProps {
+  isOpen: boolean;
+  onClose: () => void;
+  cartItems: any[];
+}
+
+export function CartPreview({ isOpen, onClose, cartItems }: CartPreviewProps) {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ x: '100%', opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: '100%', opacity: 0 }}
+          transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+          className="fixed top-0 right-0 h-full w-80 bg-white shadow-lg z-50 overflow-y-auto"
+        >
+          <div className="p-4 border-b">
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-semibold">Cart</h2>
+              <button
+                onClick={onClose}
+                className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+          <div className="p-4 space-y-4">
+            {cartItems.map((item) => (
+              <motion.div
+                key={`${item.id}-${item.size}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center space-x-4"
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-16 h-16 object-cover rounded"
+                />
+                <div className="flex-1">
+                  <h3 className="text-sm font-medium">{item.name}</h3>
+                  <p className="text-sm text-gray-500">Size: {item.size}</p>
+                  <p className="text-sm">Qty: {item.quantity}</p>
+                </div>
+                <p className="text-sm font-medium">₹{item.price}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
 
 function App() {
   return (
     <Router>
       <CartProvider>
-      <ToastContainer position="top-right" autoClose={3000} />
-        <div className="min-h-screen bg-[#fafafa] flex flex-col ">
+        <div className="min-h-screen bg-[#fafafa] flex flex-col">
           <Navbar />
           <div className="mb-20">
             <main className="flex-grow">
@@ -84,13 +94,13 @@ function App() {
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-of-service" element={<TermsOfService />} />
                 <Route path="/product/:productId" element={<ProductDetail />} />
-                <Route path="/order-confirmation" element={<OrderConfirmation />}/>
-                <Route path="/trackorder" element={<TrackOrder />}/>
-                <Route path="*" element={<NotFound />} /> {/* 404 Page */}
+                <Route path="/order-confirmation" element={<OrderConfirmation />} />
+                <Route path="/trackorder" element={<TrackOrder />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
           </div>
-          <Footer /> {/* Ensure Footer is properly imported */}
+          <Footer />
         </div>
       </CartProvider>
     </Router>
@@ -98,4 +108,3 @@ function App() {
 }
 
 export default App;
-
