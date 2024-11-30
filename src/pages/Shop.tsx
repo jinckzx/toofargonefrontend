@@ -176,7 +176,7 @@ export default function Shop() {
                   }}
                   transition={{ duration: 0.6 }}
                   onError={() => handleImageError(product.productId)}
-                  loading="lazy"
+                  
                 />
               )}
             </div>
