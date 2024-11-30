@@ -144,6 +144,46 @@ export default function Shop() {
 
           {/* Product Grid */}
           <div className="flex-1">
+  <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    {products.map((product) => (
+      (product.instock === "" || product.instock === "Out of Stock") && (
+        <motion.div
+          key={product.productId}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="group"
+        >
+          <Link 
+            to={`/product/${product.productId}`} 
+            className="block relative aspect-square overflow-hidden bg-gray-100 rounded-lg"
+          >
+            <div
+              className="relative w-full h-full"
+              onMouseEnter={() => setHoveredProduct(product.productId)}
+              onMouseLeave={() => setHoveredProduct(null)}
+            >
+              {product.images && product.images.length > 0 && (
+                <motion.img
+                  src={hoveredProduct === product.productId && product.images[1]
+                    ? product.images[1]
+                    : product.images[0]}
+                  alt={product.productTitle}
+                  className="w-full h-full object-cover"
+                  initial={false}
+                  animate={{
+                    scale: hoveredProduct === product.productId ? 1.1 : 1
+                  }}
+                  transition={{ duration: 0.6 }}
+                  onError={() => handleImageError(product.productId)}
+                  loading="lazy"
+                />
+              )}
+            </div>
+          </Link>
+     
+{/* 
+          <div className="flex-1">
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {products.map((product) => (
                 (product.instock === "" || product.instock === "Out of Stock") && (
@@ -180,7 +220,7 @@ export default function Shop() {
                         )}
                       </div>
                     </Link>
-
+ */}
                     <div className="mt-4 space-y-1">
                       <Link 
                         to={`/product/${product.productId}`} 
