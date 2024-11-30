@@ -1,12 +1,11 @@
-
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Plus, Minus, X, ArrowLeft, CheckIcon } from 'lucide-react';
+import { Plus, Minus, X, ArrowLeft } from 'lucide-react';
 import axios from 'axios';
 import { useCart } from '../context/CartContext';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import ProductImageGallery from '../components/ProductImageGallery';
-import { toast } from 'react-toastify';
+import { CartPreview } from '../App';
 
 interface Product {
   _id: string;
@@ -26,10 +25,6 @@ interface Product {
 }
 
 export default function ProductDetail() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const { productId } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState<Product | null>(null);
@@ -41,7 +36,12 @@ export default function ProductDetail() {
   const [selectedSize, setSelectedSize] = useState('');
   const [sizeError, setSizeError] = useState('');
   const [zoom, setZoom] = useState({ x: 0, y: 0, scale: 1 });
-  const { addToCart } = useCart();
+  const { addToCart, cartItems } = useCart();
+  const [showCartPreview, setShowCartPreview] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -60,7 +60,6 @@ export default function ProductDetail() {
         setLoading(false);
       }
     };
-
 
     if (productId) {
       fetchProduct();
@@ -89,20 +88,12 @@ export default function ProductDetail() {
       addToCart(cartItem);
       setQuantity(1);
       setSizeError('');
-      toast.success(
-        <>
-          
-          <div>
-            Item added to cart!
-            
-          </div>
-        </>,
-        {
-          className: 'custom-toast',
-          autoClose: 3000, // Close the toast after 3 seconds
-          hideProgressBar: false, // Show the progress bar
-        }
-      );
+      setShowCartPreview(true);
+      
+      // Auto-hide cart preview after 3 seconds
+      setTimeout(() => {
+        setShowCartPreview(false);
+      }, 3000);
     }
   };
 
@@ -150,7 +141,6 @@ export default function ProductDetail() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Back to Shop Button - Fixed Position */}
       <motion.button
         onClick={() => navigate('/shop')}
         className="fixed top-36 left-8 z-10 flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white/80 backdrop-blur-sm rounded-full shadow-lg hover:bg-black hover:text-white transition-all duration-300 border border-gray-200 hidden lg:flex"
@@ -164,9 +154,14 @@ export default function ProductDetail() {
         Back to Shop
       </motion.button>
 
+      <CartPreview
+        isOpen={showCartPreview}
+        onClose={() => setShowCartPreview(false)}
+        cartItems={cartItems}
+      />
+
       <div className="max-w-7xl mx-auto px-4 pt-36 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative">
-          {/* Left: Product Image Gallery */}
           <ProductImageGallery
             images={product.images}
             selectedImage={selectedImage}
@@ -178,7 +173,6 @@ export default function ProductDetail() {
             zoom={zoom}
           />
 
-          {/* Right: Product Details */}
           <motion.div 
             className="space-y-6 lg:pl-8"
             initial={{ opacity: 0, y: 20 }}
@@ -253,7 +247,6 @@ export default function ProductDetail() {
               )}
             </motion.div>
 
-            {/* Product Description */}
             <motion.p
               className="text-gray-600 text-sm leading-relaxed"
               initial={{ opacity: 0 }}
@@ -291,33 +284,20 @@ export default function ProductDetail() {
               </div>
             </motion.div>
 
-            {/* Action Buttons */}
             <motion.div 
               className="space-y-3 pt-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
             >
-              {/* <motion.button
+              <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handleAddToCart}
                 className="w-full py-3 px-4 text-sm bg-black text-white rounded-lg font-medium transition-all duration-300 border-2 border-transparent hover:border-black hover:bg-white hover:text-black"
               >
                 Add to Cart
-              </motion.button> */}
-              <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => {
-                    handleAddToCart(); // Call your add-to-cart logic
-                     // Show notification
-                  }}
-                  className="w-full py-3 px-4 text-sm bg-black text-white rounded-lg font-medium transition-all duration-300 border-2 border-transparent hover:border-black hover:bg-white hover:text-black"
-                >
-                  Add to Cart
-                </motion.button>
-
+              </motion.button>
 
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -329,7 +309,6 @@ export default function ProductDetail() {
               </motion.button>
             </motion.div>
 
-            {/* Product Details */}
             <motion.div 
               className="space-y-4 border-t border-gray-200 pt-6"
               initial={{ opacity: 0 }}
@@ -368,7 +347,6 @@ export default function ProductDetail() {
         </div>
       </div>
 
-      {/* Full Screen Image Modal */}
       {showFullScreen && (
         <motion.div 
           className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center"
