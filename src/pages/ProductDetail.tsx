@@ -235,7 +235,7 @@ export default function ProductDetail() {
                 } rounded-lg focus:ring-2 focus:ring-black focus:border-transparent`}
               >
                 <option value="">Choose a size</option>
-                <option value="XS">XS</option>
+                
                 <option value="S">S</option>
                 <option value="M">M</option>
                 <option value="L">L</option>
