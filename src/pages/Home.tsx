@@ -16,7 +16,7 @@ export default function Home() {
       >
         {/* Corrected Image Path */}
         <img
-          src="/img/1.jpg" // Path relative to the `public` folder
+          src="/img/home.jpg" // Path relative to the `public` folder
           alt="Hero"
           className="w-full h-full object-cover"
         />
