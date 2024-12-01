@@ -441,7 +441,10 @@ export default function Shop() {
   {product.instock === 'Out of Stock' && (
     <p className="text-red-500 text-xs font-medium">Out of Stock</p>
   )}
-  <h2 className="text-xs hover:underline text-center">{product.productTitle}</h2>
+                    <Link to={`/product/${product.productId}`} className="text-xs text-center hover:underline">
+    {product.productTitle}
+  </Link>
+  
   <div className="flex items-center space-x-2">
     <p className="text-xs text-gray-500 line-through">₹{product.price}</p>
     <p className="text-xs font-semibold">₹{product.discountedPrice}</p>
