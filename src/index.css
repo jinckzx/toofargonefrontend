@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: 'HelveticaSchool'; /* Name your font */
-    src: url('/fonts/madefor-text.var.original.woff2') format('woff2'); /* Adjusted for TTF file */
+    src: url('/fonts/helvetica-helvetica_n4.8bddb85c18a0094c427a9bf65dee963ad88de4e8.woff') format('woff'); /* Adjusted for TTF file */
     font-weight: normal; /* Specify the font weight */
     font-style: normal; /* Specify the font style */
 }
