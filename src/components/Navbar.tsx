@@ -165,7 +165,7 @@ export default function Navbar() {
             <div className="flex-1 flex justify-center items-center">
               <Link to="/" className="mb-2">
                 <img
-                  src="/img/1.png"
+                  src="/img/1-1.png"
                   alt="Brand Logo"
                   className={`h-10 object-contain transition-all ${isScrolled ? 'w-32 h-16' : 'w-36 h-20'}`}
                   style={{ objectFit: 'cover' }}
