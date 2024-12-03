@@ -89,7 +89,6 @@
 //     </header>
 //   );
 // }
-
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import AnnouncementBanner from './AnnouncementBanner';
@@ -144,21 +143,21 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 w-full z-40">
       <AnnouncementBanner />
-      <nav className={`bg-[#fafafa]/80 backdrop-blur-sm transition-all ${isScrolled ? 'py-0.5' : 'py-1'}`}>
+      <nav className={`bg-[#fafafa]/80 backdrop-blur-sm transition-all ${isScrolled ? 'py-1' : 'py-2'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between">
             <div className="flex-1 flex justify-center items-center">
-              <Link to="/" className="mb-1 -mt-1">
+              <Link to="/" className="-mt-1">
                 <img
                   src="/img/1-1.png"
                   alt="Brand Logo"
-                  className={`object-contain transition-all ${isScrolled ? 'w-32 h-14' : 'w-40 h-16'}`}
-                  style={{ objectFit: 'contain', transform: 'scale(1.1)' }}
+                  className={`object-contain transition-all ${isScrolled ? 'w-48 h-20' : 'w-56 h-24'}`}
+                  style={{ objectFit: 'contain', transform: 'scale(1.15)' }}
                 />
               </Link>
             </div>
 
-            <div className="relative -mt-1">
+            <div className="relative -mt-3">
               <div className="text-center text-xs font-HelveticaCustom">
                 <span>{date}</span>
                 <span className="inline-block w-8"></span>
