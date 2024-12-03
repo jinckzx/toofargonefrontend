@@ -57,11 +57,11 @@
 //         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 //           <div className="flex flex-col items-center justify-between">
 //             <div className="flex-1 flex justify-center items-center">
-//               <Link to="/" className="mb-2">
+//               <Link to="/" className="mb-1">
 //                 <img
 //                   src="/img/1-1.png"
 //                   alt="Brand Logo"
-//                   className={`object-contain transition-all ${isScrolled ? 'w-32 h-16' : 'w-36 h-20'}`}
+//                   className={`object-contain transition-all ${isScrolled ? 'w-24 h-12' : 'w-28 h-14'}`}
 //                   style={{ objectFit: 'cover' }}
 //                 />
 //               </Link>
@@ -75,7 +75,7 @@
 //               </div>
 //               <Link
 //                 to="/cart"
-//                 className="flex items-center justify-center mt-1 text-xs font-HelveticaCustom font-bold hover:text-black transition-colors px-4 py-2 rounded"
+//                 className="flex items-center justify-center mt-0.5 text-xs font-HelveticaCustom font-bold hover:text-black transition-colors px-4 py-1 rounded"
 //               >
 //                 <span>Cart</span>
 //                 <span className="ml-2 bg-black text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
@@ -148,17 +148,17 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between">
             <div className="flex-1 flex justify-center items-center">
-              <Link to="/" className="mb-1">
+              <Link to="/" className="mb-1 -mt-1">
                 <img
                   src="/img/1-1.png"
                   alt="Brand Logo"
-                  className={`object-contain transition-all ${isScrolled ? 'w-24 h-12' : 'w-28 h-14'}`}
-                  style={{ objectFit: 'cover' }}
+                  className={`object-contain transition-all ${isScrolled ? 'w-32 h-14' : 'w-40 h-16'}`}
+                  style={{ objectFit: 'contain', transform: 'scale(1.1)' }}
                 />
               </Link>
             </div>
 
-            <div className="relative">
+            <div className="relative -mt-1">
               <div className="text-center text-xs font-HelveticaCustom">
                 <span>{date}</span>
                 <span className="inline-block w-8"></span>
