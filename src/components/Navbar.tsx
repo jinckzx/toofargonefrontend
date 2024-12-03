@@ -1,19 +1,16 @@
 
-// import { Link, useLocation } from 'react-router-dom';
-// import { useCart } from '../context/CartContext';
+// import { Link } from 'react-router-dom';
 // import { useEffect, useState } from 'react';
 // import AnnouncementBanner from './AnnouncementBanner';
 
 // export default function Navbar() {
-//   const location = useLocation();
-//   const { cartItems } = useCart();
 //   const [date, setDate] = useState('');
 //   const [time, setTime] = useState('');
 //   const [isScrolled, setIsScrolled] = useState(false);
 
 //   useEffect(() => {
 //     const handleScroll = () => {
-//       if (window.scrollY > 50) {
+//       if (window.scrollY > 0) {
 //         setIsScrolled(true);
 //       } else {
 //         setIsScrolled(false);
@@ -21,10 +18,7 @@
 //     };
 
 //     window.addEventListener('scroll', handleScroll);
-
-//     return () => {
-//       window.removeEventListener('scroll', handleScroll);
-//     };
+//     return () => window.removeEventListener('scroll', handleScroll);
 //   }, []);
 
 //   useEffect(() => {
@@ -57,17 +51,17 @@
 //   }, []);
 
 //   return (
-//     <>
+//     <header className="fixed top-0 w-full z-40">
 //       <AnnouncementBanner />
-//       <nav className={`fixed w-full bg-[#fafafa]/80 backdrop-blur-xs z-40 transition-all ${isScrolled ? 'py-0.5' : 'py-1'} top-6`}>
-//         <div className="max-w-7xl mx-auto px-4-xs:px-6 lg:px-8">
+//       <nav className={`bg-[#fafafa]/80 backdrop-blur-sm transition-all ${isScrolled ? 'py-0.5' : 'py-1'}`}>
+//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 //           <div className="flex flex-col items-center justify-between">
 //             <div className="flex-1 flex justify-center items-center">
 //               <Link to="/" className="mb-2">
 //                 <img
 //                   src="/img/1-1.png"
 //                   alt="Brand Logo"
-//                   className={`h-10 object-contain transition-all ${isScrolled ? 'w-32 h-16' : 'w-36 h-20'}`}
+//                   className={`object-contain transition-all ${isScrolled ? 'w-32 h-16' : 'w-36 h-20'}`}
 //                   style={{ objectFit: 'cover' }}
 //                 />
 //               </Link>
@@ -84,19 +78,18 @@
 //                 className="flex items-center justify-center mt-1 text-xs font-HelveticaCustom font-bold hover:text-black transition-colors px-4 py-2 rounded"
 //               >
 //                 <span>Cart</span>
-//                 {cartItems.length > 0 && (
-//                   <span className="ml-2 bg-black text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
-//                     {cartItems.reduce((total, item) => total + item.quantity, 0)}
-//                   </span>
-//                 )}
+//                 <span className="ml-2 bg-black text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
+//                   0
+//                 </span>
 //               </Link>
 //             </div>
 //           </div>
 //         </div>
 //       </nav>
-//     </>
+//     </header>
 //   );
 // }
+
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import AnnouncementBanner from './AnnouncementBanner';
@@ -155,11 +148,11 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between">
             <div className="flex-1 flex justify-center items-center">
-              <Link to="/" className="mb-2">
+              <Link to="/" className="mb-1">
                 <img
                   src="/img/1-1.png"
                   alt="Brand Logo"
-                  className={`object-contain transition-all ${isScrolled ? 'w-32 h-16' : 'w-36 h-20'}`}
+                  className={`object-contain transition-all ${isScrolled ? 'w-24 h-12' : 'w-28 h-14'}`}
                   style={{ objectFit: 'cover' }}
                 />
               </Link>
@@ -173,7 +166,7 @@ export default function Navbar() {
               </div>
               <Link
                 to="/cart"
-                className="flex items-center justify-center mt-1 text-xs font-HelveticaCustom font-bold hover:text-black transition-colors px-4 py-2 rounded"
+                className="flex items-center justify-center mt-0.5 text-xs font-HelveticaCustom font-bold hover:text-black transition-colors px-4 py-1 rounded"
               >
                 <span>Cart</span>
                 <span className="ml-2 bg-black text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
