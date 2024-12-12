@@ -326,7 +326,7 @@ export default function Lookbook() {
         )}
       </AnimatePresence>
 
-      <div className="pt-36 px-4 sm:px-6 lg:px-8">
+      <div className="pt-36 max-w-7xl mx-20 px-4 sm:px-6 lg:px-8">
         <div className="flex gap-8">
           <div className="hidden md:block w-24 flex-shrink-0">
             <div className="sticky top-28 space-y-6">
@@ -335,7 +335,7 @@ export default function Lookbook() {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className="block text-gray-500 hover:text-black transition-colors duration-200 text-sm"
+                    className="block text-white-500 hover:text-white hover:bg-gray-400 transition-colors duration-200 text-sm"
                   >
                     {item.label}
                   </Link>
