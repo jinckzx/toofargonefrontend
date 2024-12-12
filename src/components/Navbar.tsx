@@ -61,8 +61,10 @@ export default function Navbar() {
                 <img
                   src="/img/1-1.png"
                   alt="Brand Logo"
-                  className={`object-contain transition-all ${isScrolled ? 'w-24 h-12' : 'w-28 h-14'}`}
-                  style={{ objectFit: 'cover' }}
+{/*                   className={`object-contain transition-all ${isScrolled ? 'w-24 h-12' : 'w-28 h-14'}`}
+                  style={{ objectFit: 'cover' }} */}
+className={`object-contain transition-transform ${isScrolled ? 'scale-110' : 'scale-125'}`} {/* Scales the logo */}
+            style={{ objectFit: 'cover', width: '7rem', height: '3.5rem' }} {/* Fixed dimensions */}
                 />
               </Link>
             </div>
