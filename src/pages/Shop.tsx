@@ -390,7 +390,7 @@ export default function Shop() {
 
           {/* Product Grid */}
           <div className="flex-1">
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-2">
               {products.map((product) => (
                 <motion.div
                   key={product.productId}
@@ -401,7 +401,7 @@ export default function Shop() {
                 >
                   <Link
                     to={`/product/${product.productId}`}
-                    className="block relative aspect-square overflow-hidden bg-gray-100 rounded-lg"
+                    className="block relative aspect-square overflow-hidden bg-white"
                   >
                     <div
                       className="relative w-full h-full"
