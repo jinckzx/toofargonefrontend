@@ -67,7 +67,7 @@
 // }
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useCart } from './CartContext'; // Adjust the import path as needed
+import { useCart } from '../context/CartContext'; // Adjust the import path as needed
 import AnnouncementBanner from './AnnouncementBanner';
 
 export default function Navbar() {
