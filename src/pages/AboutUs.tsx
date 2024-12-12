@@ -69,7 +69,7 @@ export default function AboutUs() {
         )}
       </AnimatePresence>
 {/*desktop*/}
-      <div className="pt-36 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="pt-36 max-w-7xl mx-20 px-4 sm:px-6 lg:px-8">
         <div className="flex gap-8">
           {/* Desktop Sidebar */}
           <div className="hidden md:block w-24 flex-shrink-0">
@@ -79,7 +79,7 @@ export default function AboutUs() {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className="block text-white-500 hover:text-white hover:bg-gray-400 text-sm"
+                    className="block text-white-500 hover:text-white hover:bg-gray-400 transition-colors duration-200 text-sm"
                   >
                     {item.label}
                   </Link>
