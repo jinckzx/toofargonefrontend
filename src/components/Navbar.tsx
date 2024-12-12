@@ -68,11 +68,11 @@ export default function Navbar() {
             </div>
 
             <div className="relative">
-              <div className="text-center text-xs font-HelveticaCustom">
+{/*               <div className="text-center text-xs font-HelveticaCustom">
                 <span>{date}</span>
                 <span className="inline-block w-8"></span>
                 <span>{time}</span>
-              </div>
+              </div> */}
               <Link
                 to="/cart"
                 className="flex items-center justify-center mt-0.5 text-xs font-HelveticaCustom font-bold hover:text-black transition-colors px-4 py-1 rounded"
