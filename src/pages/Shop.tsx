@@ -401,7 +401,7 @@ export default function Shop() {
                 >
                   <Link
                     to={`/product/${product.productId}`}
-                    className="block relative aspect-square overflow-hidden bg-gray-100 "
+                    className="block relative aspect-square overflow-hidden bg-white"
                   >
                     <div
                       className="relative w-full h-full"
