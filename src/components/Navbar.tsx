@@ -106,7 +106,7 @@ export default function Navbar() {
               >
                 <span>Cart</span>
                 <span className="ml-2 bg-black text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
-                  {getTotalItems()} {/* Use getTotalItems from CartContext */}
+                  {getTotalItems()} 
                 </span>
               </Link>
             </div>
