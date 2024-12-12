@@ -61,7 +61,7 @@ export default function Navbar() {
                 <img
                   src="/img/1-1.png"
                   alt="Brand Logo"
-                  className={`object-contain transition-all ${isScrolled ? 'w-24 h-12' : 'w-28 h-14'}`}
+                  className={`object-contain transition-all ${isScrolled ? 'w-24 h-12' : 'w-28 h-18'}`}
                   style={{ objectFit: 'cover' }}
                 />
               </Link>
