@@ -123,8 +123,8 @@ export default function Navbar() {
             alt="Brand Logo"
             className={`transition-transform ${isScrolled ? 'scale-110' : 'scale-130'}`} // Scales the logo
             style={{
-              width: '6rem', // Keep fixed dimensions
-              height: '3rem',
+              width: '9rem', // Keep fixed dimensions
+              height: '5rem',
               objectFit: 'contain',
             }}
           />
