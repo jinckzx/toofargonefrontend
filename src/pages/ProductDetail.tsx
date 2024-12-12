@@ -207,10 +207,10 @@ export default function ProductDetail() {
               className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
                 product.instock === 'Out of Stock'
                   ? 'bg-red-100 text-red-800'
-                  : 'bg-green-100 text-green-800'
+                  : 'bg-green-100 text-blue-800'
               }`}
             >
-              {product.instock === 'Out of Stock' ? 'Out of Stock' : 'In Stock'}
+              {product.instock === 'Out of Stock' ? 'Out of Stock' : product.instock}
             </motion.span>
 
             <motion.div 
