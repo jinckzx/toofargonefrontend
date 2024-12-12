@@ -61,19 +61,18 @@ export default function Navbar() {
                 <img
                   src="/img/1-1.png"
                   alt="Brand Logo"
-
-className={`object-contain transition-transform ${isScrolled ? 'scale-110' : 'scale-125'}`} {/* Scales the logo */}
-            style={{ objectFit: 'cover', width: '7rem', height: '4.5rem' }} {/* Fixed dimensions */}
+                  className={`object-contain transition-all ${isScrolled ? 'w-24 h-12' : 'w-28 h-14'}`}
+                  style={{ objectFit: 'cover' }}
                 />
               </Link>
             </div>
 
             <div className="relative">
-{/*               <div className="text-center text-xs font-HelveticaCustom">
+              <div className="text-center text-xs font-HelveticaCustom">
                 <span>{date}</span>
                 <span className="inline-block w-8"></span>
                 <span>{time}</span>
-              </div> */}
+              </div>
               <Link
                 to="/cart"
                 className="flex items-center justify-center mt-0.5 text-xs font-HelveticaCustom font-bold hover:text-black transition-colors px-4 py-1 rounded"
@@ -90,5 +89,3 @@ className={`object-contain transition-transform ${isScrolled ? 'scale-110' : 'sc
     </header>
   );
 }
-
-
