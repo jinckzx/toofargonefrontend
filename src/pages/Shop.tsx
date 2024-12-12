@@ -437,10 +437,10 @@ export default function Shop() {
     {product.productTitle}
   </Link>
   
-  <div className="flex items-center space-x-2">
+  <div className="flex items-center space-x-2 mb-2">
     <p className="text-xs text-gray-500 line-through">₹{product.price}</p>
     <p className="text-xs font-semibold">₹{product.discountedPrice}</p>
-<br></br>
+
   </div>
 </div>
 
