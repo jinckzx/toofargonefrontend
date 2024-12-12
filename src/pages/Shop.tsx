@@ -428,7 +428,7 @@ export default function Shop() {
                     </div>
                   </Link>
 
-{/* 
+
                   <div className="mt-2 flex flex-col items-center">
   {product.instock === 'Out of Stock' && (
     <p className="text-red-500 text-xs font-medium">Out of Stock</p>
@@ -440,8 +440,9 @@ export default function Shop() {
   <div className="flex items-center space-x-2">
     <p className="text-xs text-gray-500 line-through">₹{product.price}</p>
     <p className="text-xs font-semibold">₹{product.discountedPrice}</p>
+<br></br>
   </div>
-</div> */}
+</div>
 
                 </motion.div>
               ))}
