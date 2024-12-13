@@ -25,114 +25,114 @@
 // }
 
 // export default function ProductDetail() {
-//   const { productId } = useParams();
-//   const navigate = useNavigate();
-//   const [product, setProduct] = useState<Product | null>(null);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState<string | null>(null);
-//   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-//   const [showFullScreen, setShowFullScreen] = useState(false);
-//   const [quantity, setQuantity] = useState(1);
-//   const [selectedSize, setSelectedSize] = useState('');
-//   const [sizeError, setSizeError] = useState('');
-//   const [zoom, setZoom] = useState({ x: 0, y: 0, scale: 1 });
-//   const { addToCart, cartItems } = useCart();
-//   const [showCartPreview, setShowCartPreview] = useState(false);
+  // const { productId } = useParams();
+  // const navigate = useNavigate();
+  // const [product, setProduct] = useState<Product | null>(null);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState<string | null>(null);
+  // const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  // const [showFullScreen, setShowFullScreen] = useState(false);
+  // const [quantity, setQuantity] = useState(1);
+  // const [selectedSize, setSelectedSize] = useState('');
+  // const [sizeError, setSizeError] = useState('');
+  // const [zoom, setZoom] = useState({ x: 0, y: 0, scale: 1 });
+  // const { addToCart, cartItems } = useCart();
+  // const [showCartPreview, setShowCartPreview] = useState(false);
 
-//   useEffect(() => {
-//     window.scrollTo(0, 0);
-//   }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
-//   useEffect(() => {
-//     const fetchProduct = async () => {
-//       try {
-//         const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/products/${productId}`);
-//         if (response.data) {
-//           setProduct(response.data);
-//           setSelectedImage(response.data.images[0]);
-//         } else {
-//           setError('Product not found');
-//         }
-//         setLoading(false);
-//       } catch (err) {
-//         console.error('Error fetching product:', err);
-//         setError('Failed to fetch product details');
-//         setLoading(false);
-//       }
-//     };
+  // useEffect(() => {
+  //   const fetchProduct = async () => {
+  //     try {
+  //       const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/products/${productId}`);
+  //       if (response.data) {
+  //         setProduct(response.data);
+  //         setSelectedImage(response.data.images[0]);
+  //       } else {
+  //         setError('Product not found');
+  //       }
+  //       setLoading(false);
+  //     } catch (err) {
+  //       console.error('Error fetching product:', err);
+  //       setError('Failed to fetch product details');
+  //       setLoading(false);
+  //     }
+  //   };
 
-//     if (productId) {
-//       fetchProduct();
-//     }
-//   }, [productId]);
+  //   if (productId) {
+  //     fetchProduct();
+  //   }
+  // }, [productId]);
 
-//   const handleQuantityChange = (delta: number) => {
-//     setQuantity(prev => Math.max(1, prev + delta));
-//   };
+  // const handleQuantityChange = (delta: number) => {
+  //   setQuantity(prev => Math.max(1, prev + delta));
+  // };
 
-//   const handleAddToCart = () => {
-//     if (!selectedSize) {
-//       setSizeError('Please select a size');
-//       return;
-//     }
+  // const handleAddToCart = () => {
+  //   if (!selectedSize) {
+  //     setSizeError('Please select a size');
+  //     return;
+  //   }
 
-//     if (product) {
-//       const cartItem = {
-//         id: product.productId,
-//         name: product.productTitle,
-//         price: product.discountedPrice,
-//         quantity: quantity,
-//         image: product.images[0],
-//         size: selectedSize,
-//       };
-//       addToCart(cartItem);
-//       setQuantity(1);
-//       setSizeError('');
-//       setShowCartPreview(true);
+  //   if (product) {
+  //     const cartItem = {
+  //       id: product.productId,
+  //       name: product.productTitle,
+  //       price: product.discountedPrice,
+  //       quantity: quantity,
+  //       image: product.images[0],
+  //       size: selectedSize,
+  //     };
+  //     addToCart(cartItem);
+  //     setQuantity(1);
+  //     setSizeError('');
+  //     setShowCartPreview(true);
       
-//       // Auto-hide cart preview after 3 seconds
-//       setTimeout(() => {
-//         setShowCartPreview(false);
-//       }, 3000);
-//     }
-//   };
+  //     // Auto-hide cart preview after 3 seconds
+  //     setTimeout(() => {
+  //       setShowCartPreview(false);
+  //     }, 3000);
+  //   }
+  // };
 
-//   const handleBuyNow = () => {
-//     if (!selectedSize) {
-//       setSizeError('Please select a size');
-//       return;
-//     }
-//     handleAddToCart();
-//     navigate('/checkout');
-//   };
+  // const handleBuyNow = () => {
+  //   if (!selectedSize) {
+  //     setSizeError('Please select a size');
+  //     return;
+  //   }
+  //   handleAddToCart();
+  //   navigate('/checkout');
+  // };
 
-//   const handleImageClick = (image: string) => {
-//     setSelectedImage(image);
-//     setZoom({ x: 0, y: 0, scale: 1 });
-//   };
+  // const handleImageClick = (image: string) => {
+  //   setSelectedImage(image);
+  //   setZoom({ x: 0, y: 0, scale: 1 });
+  // };
 
-//   const handleFullScreenToggle = () => {
-//     setShowFullScreen(!showFullScreen);
-//     setZoom({ x: 0, y: 0, scale: 1 });
-//   };
+  // const handleFullScreenToggle = () => {
+  //   setShowFullScreen(!showFullScreen);
+  //   setZoom({ x: 0, y: 0, scale: 1 });
+  // };
 
-//   const handleZoomMove = (e: React.MouseEvent<HTMLDivElement>) => {
-//     if (!selectedImage) return;
+  // const handleZoomMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  //   if (!selectedImage) return;
 
-//     const rect = e.currentTarget.getBoundingClientRect();
-//     const x = ((e.clientX - rect.left) / rect.width) * 100;
-//     const y = ((e.clientY - rect.top) / rect.height) * 100;
+  //   const rect = e.currentTarget.getBoundingClientRect();
+  //   const x = ((e.clientX - rect.left) / rect.width) * 100;
+  //   const y = ((e.clientY - rect.top) / rect.height) * 100;
 
-//     setZoom({ x, y, scale: 1.2 });
-//   };
+  //   setZoom({ x, y, scale: 1.2 });
+  // };
 
-//   const handleZoomLeave = () => {
-//     setZoom({ x: 0, y: 0, scale: 1 });
-//   };
+  // const handleZoomLeave = () => {
+  //   setZoom({ x: 0, y: 0, scale: 1 });
+  // };
 
-//   if (loading) return <div className="pt-36 p-4">Loading...</div>;
-//   if (error) return <div className="pt-36 p-4 text-red-500">{error}</div>;
-//   if (!product) return <div className="pt-36 p-4">No product data available</div>;
+  // if (loading) return <div className="pt-36 p-4">Loading...</div>;
+  // if (error) return <div className="pt-36 p-4 text-red-500">{error}</div>;
+  // if (!product) return <div className="pt-36 p-4">No product data available</div>;
 
 //   return (
 //     <motion.div 
@@ -444,6 +444,114 @@ const SizeButton: React.FC<SizeButtonProps> = ({ size, isSelected, onClick }) =>
 
 export default function ProductDetail() {
   // ... existing state declarations ...
+  const { productId } = useParams();
+  const navigate = useNavigate();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [showFullScreen, setShowFullScreen] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState('');
+  const [sizeError, setSizeError] = useState('');
+  const [zoom, setZoom] = useState({ x: 0, y: 0, scale: 1 });
+  const { addToCart, cartItems } = useCart();
+  const [showCartPreview, setShowCartPreview] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/products/${productId}`);
+        if (response.data) {
+          setProduct(response.data);
+          setSelectedImage(response.data.images[0]);
+        } else {
+          setError('Product not found');
+        }
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching product:', err);
+        setError('Failed to fetch product details');
+        setLoading(false);
+      }
+    };
+
+    if (productId) {
+      fetchProduct();
+    }
+  }, [productId]);
+
+  const handleQuantityChange = (delta: number) => {
+    setQuantity(prev => Math.max(1, prev + delta));
+  };
+
+  const handleAddToCart = () => {
+    if (!selectedSize) {
+      setSizeError('Please select a size');
+      return;
+    }
+
+    if (product) {
+      const cartItem = {
+        id: product.productId,
+        name: product.productTitle,
+        price: product.discountedPrice,
+        quantity: quantity,
+        image: product.images[0],
+        size: selectedSize,
+      };
+      addToCart(cartItem);
+      setQuantity(1);
+      setSizeError('');
+      setShowCartPreview(true);
+      
+      // Auto-hide cart preview after 3 seconds
+      setTimeout(() => {
+        setShowCartPreview(false);
+      }, 3000);
+    }
+  };
+
+  const handleBuyNow = () => {
+    if (!selectedSize) {
+      setSizeError('Please select a size');
+      return;
+    }
+    handleAddToCart();
+    navigate('/checkout');
+  };
+
+  const handleImageClick = (image: string) => {
+    setSelectedImage(image);
+    setZoom({ x: 0, y: 0, scale: 1 });
+  };
+
+  const handleFullScreenToggle = () => {
+    setShowFullScreen(!showFullScreen);
+    setZoom({ x: 0, y: 0, scale: 1 });
+  };
+
+  const handleZoomMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!selectedImage) return;
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    setZoom({ x, y, scale: 1.2 });
+  };
+
+  const handleZoomLeave = () => {
+    setZoom({ x: 0, y: 0, scale: 1 });
+  };
+
+  if (loading) return <div className="pt-36 p-4">Loading...</div>;
+  if (error) return <div className="pt-36 p-4 text-red-500">{error}</div>;
+  if (!product) return <div className="pt-36 p-4">No product data available</div>;
 
   const containerVariants = {
     hidden: { opacity: 0 },
