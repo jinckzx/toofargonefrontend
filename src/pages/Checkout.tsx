@@ -207,7 +207,7 @@ export default function Checkout() {
        
         setCouponError('');
         
-        if (couponCode.toLowerCase() === 'save10' && subtotal >= 5000) {
+        if (couponCode.toLowerCase() === 'santa666' && subtotal >= 5000) {
             setCouponApplied(true);
             alert('Coupon applied successfully!');
         } else {
