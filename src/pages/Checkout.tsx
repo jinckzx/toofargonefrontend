@@ -423,7 +423,7 @@ export default function Checkout() {
                         )}
                         {subtotal >= 5000 && !couponError && (
                             <p className="text-sm text-green-600 mt-2">
-                                Use code "SAVE10" for 10% off on orders above ₹5000
+                                Use code "SANTA666" for 10% off on orders above ₹5000
                             </p>
                         )}
                     </div>
