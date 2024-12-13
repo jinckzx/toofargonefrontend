@@ -614,19 +614,19 @@ export default function ProductDetail() {
           >
             <motion.h1 
               variants={itemVariants}
-              className="text-xl lg:text-2xl font-bold text-gray-900"
+              className="text-lg lg:text-xl font-bold text-gray-900"
             >
               {product.productTitle}
             </motion.h1>
 
             <motion.div 
               variants={itemVariants}
-              className="flex items-baseline space-x-4"
+              className="flex items-baseline space-x-2"
             >
               {product.price !== product.discountedPrice && (
                 <p className="text-lg text-gray-500 line-through">₹{product.price}</p>
               )}
-              <p className="text-2xl lg:text-3xl font-bold">₹{product.discountedPrice}</p>
+              <p className="text-lg lg:text-2xl font-bold">₹{product.discountedPrice}</p>
             </motion.div>
 
             <motion.div
@@ -644,7 +644,7 @@ export default function ProductDetail() {
 
             <motion.div 
               variants={itemVariants}
-              className="space-y-4"
+              className="space-y-1"
             >
               <h3 className="text-xs font-medium text-gray-700">Select Size</h3>
               <div className="flex flex-wrap gap-4">
@@ -673,7 +673,7 @@ export default function ProductDetail() {
 
             <motion.p
               variants={itemVariants}
-              className="text-gray-600 text-base leading-relaxed"
+              className="text-gray-600 text-sm leading-relaxed"
             >
               {product.prodDesc}
             </motion.p>
