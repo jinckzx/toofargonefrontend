@@ -372,7 +372,7 @@ export default function Shop() {
       <div className="pt-36 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex gap-8">
           {/* Desktop Sidebar */}
-          <div className="hidden md:block w-64 -ml-20 flex-shrink-0 ">
+          <div className="hidden md:block w-64 -ml-15 flex-shrink-0 ">
             <div className="sticky top-28 space-y-6">
               <div className="space-y-2 pt-8 text-left">
                 {menuItems.map((item) => (
