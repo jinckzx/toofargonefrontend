@@ -69,6 +69,15 @@ export function CartPreview({ isOpen, onClose, cartItems }: CartPreviewProps) {
               </motion.div>
             ))}
           </div>
+                    <div className="p-4 border-t">
+            <Link
+              to="/checkout"
+              className="block w-full py-3 px-4 text-center bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
+              onClick={onClose}
+            >
+              Proceed to Checkout
+            </Link>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
