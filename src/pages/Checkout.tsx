@@ -209,7 +209,7 @@ export default function Checkout() {
         
         if (couponCode.toLowerCase() === 'santa666' && subtotal >= 5000) {
             setCouponApplied(true);
-            alert('Coupon applied successfully!');
+            setCouponError('Coupon applied successfully!');
         } else {
             if (subtotal < 5000) {
                 setCouponError('Minimum order value of ₹5000 not met');
