@@ -690,7 +690,7 @@ export default function ProductDetail() {
                   onClick={() => handleQuantityChange(-1)}
                   className="p-2 rounded-full hover:bg-black hover:text-white transition-all duration-300"
                 >
-                  <Minus className="w-4 h-4" />
+                  <Minus className="w-2 h-2" />
                 </motion.button>
                 <span className="text-sm font-medium w-12 text-center">{quantity}</span>
                 <motion.button
@@ -699,7 +699,7 @@ export default function ProductDetail() {
                   onClick={() => handleQuantityChange(1)}
                   className="p-2 rounded-full hover:bg-black hover:text-white transition-all duration-300"
                 >
-                  <Plus className="w-4 h-4" />
+                  <Plus className="w-2 h-2" />
                 </motion.button>
               </div>
             </motion.div>
