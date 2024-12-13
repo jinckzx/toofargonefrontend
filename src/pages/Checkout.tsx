@@ -115,14 +115,15 @@ const states = [
     'Jammu & Kashmir',
 ];
 
-
 export default function Checkout() {
     const navigate = useNavigate();
     const { cartItems, clearCart } = useCart();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [couponCode, setCouponCode] = useState('');
     const [couponApplied, setCouponApplied] = useState(false);
+    const [couponError, setCouponError] = useState('');
     const [shippingInfo, setShippingInfo] = useState<ShippingInfo>({ distance: 0, cost: 0 });
+
     
     const [formData, setFormData] = useState<FormData>({
         name: '',
@@ -204,13 +205,19 @@ export default function Checkout() {
    const handleCouponSubmit = (e: React.FormEvent) => {
        e.preventDefault();
        
-       if (couponCode.toLowerCase() === 'save10' && subtotal >= 5000) {
-           setCouponApplied(true);
-           alert('Coupon applied successfully!');
-       } else {
-           alert('Invalid coupon code or minimum order value not met (₹5000)');
-       }
-   };
+        setCouponError('');
+        
+        if (couponCode.toLowerCase() === 'save10' && subtotal >= 5000) {
+            setCouponApplied(true);
+            alert('Coupon applied successfully!');
+        } else {
+            if (subtotal < 5000) {
+                setCouponError('Minimum order value of ₹5000 not met');
+            } else {
+                setCouponError('Invalid coupon code');
+            }
+        }
+    };
 
    const handlePayment = async (orderData: any) => {
        const options = {
@@ -391,24 +398,36 @@ export default function Checkout() {
                            </div>
                        </div>
                            {/* Coupon Code Section */}
-                           <div className="bg-gray-50 p-6 rounded-lg">
-                               <h3 className="text-lg font-light mb-3">Have a Coupon?</h3>
-                               <form onSubmit={handleCouponSubmit} className="flex gap-2">
-                                   <input 
-                                       type="text" 
-                                       value={couponCode} 
-                                       onChange={(e) => setCouponCode(e.target.value)} 
-                                       placeholder="Enter coupon code" 
-                                       className="flex-1 border p-2 rounded-md" 
-                                   />
-                                   <button type="submit" className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition-colors">
-                                       Apply
-                                   </button>
-                               </form>
-                               {subtotal >= 5000 && (
-                                   <p className="text-sm text-green-600 mt-2">Use code "SAVE10" for 10% off on orders above ₹5000</p>
-                               )}
-                           </div>
+                    <div className="bg-gray-50 p-6 rounded-lg">
+                        <h3 className="text-lg font-light mb-3">Have a Coupon?</h3>
+                        <form onSubmit={handleCouponSubmit} className="flex gap-2">
+                            <input 
+                                type="text" 
+                                value={couponCode} 
+                                onChange={(e) => {
+                                    setCouponCode(e.target.value);
+                                    setCouponError(''); // Clear error when user starts typing
+                                }} 
+                                placeholder="Enter coupon code" 
+                                className="flex-1 border p-2 rounded-md" 
+                            />
+                            <button 
+                                type="submit" 
+                                className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            >
+                                Apply
+                            </button>
+                        </form>
+                        {couponError && (
+                            <p className="text-sm text-red-500 mt-2">{couponError}</p>
+                        )}
+                        {subtotal >= 5000 && !couponError && (
+                            <p className="text-sm text-green-600 mt-2">
+                                Use code "SAVE10" for 10% off on orders above ₹5000
+                            </p>
+                        )}
+                    </div>
+
                                        <button
               onClick={handleSubmit}
               className="w-full bg-black text-white py-3 hover:bg-gray-800 transition-colors rounded-md"
