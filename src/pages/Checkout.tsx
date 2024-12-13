@@ -605,7 +605,7 @@ export default function Checkout() {
         const { latitude, longitude } = position.coords;
         try {
           const response = await axios.get(
-            `https://api.geoapify.com/v1/reverse?lat=${latitude}&lon=${longitude}&apiKey=YOUR_API_KEY`
+            `https://api.geoapify.com/v1/reverse?lat=${latitude}&lon=${longitude}&apiKey=67963a9ae5874f889f8783a3e954f6c7`
           );
           const userState = response.data.features[0].properties.state;
           setFormData((prevData) => ({ ...prevData, state: userState }));
