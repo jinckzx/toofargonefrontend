@@ -81,7 +81,7 @@ export function CartPreview({ isOpen, onClose, cartItems }: CartPreviewProps) {
               to="/cart"
               className="w-full bg-black text-white py-2 rounded text-center block hover:bg-gray-800 transition-colors"
             >
-              Continue to Checkout
+              Check Cart
             </Link>
           </div>
 
