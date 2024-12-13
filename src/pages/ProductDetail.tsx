@@ -204,11 +204,11 @@ export default function ProductDetail() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4 }}
-{/*               className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+/*               className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
                 product.instock === 'Out of Stock'
                   ? 'bg-red-100 text-red-800'
                   : 'bg-blue-100 text-blue-800'
-              } */}
+              } */
 className={`inline-block px-3 py-1 text-xs font-medium ${
   
 product.instock === 'Out of Stock' 
