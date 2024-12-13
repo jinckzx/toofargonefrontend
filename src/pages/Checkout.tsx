@@ -369,8 +369,9 @@ export default function Checkout() {
                                        <div>
                                            <span className="block font-medium">{item.name}</span>
                                            {item.size && (
-                                               <span className="text-gray-500 text-sm">Size:{item.size}</span>
+                                               <span className="text-gray-500 text-xs">Size:{item.size}</span>
                                            )}
+                                        
                                            <span className="block">Quantity:{item.quantity}</span>
                                        </div>
                                    </div>
@@ -425,10 +426,10 @@ export default function Checkout() {
                             </button>
                         </form>
                         {couponError && (
-                            <p className="text-sm text-red-500 mt-2">{couponError}</p>
+                            <p className="text-xs text-red-500 mt-2">{couponError}</p>
                         )}
                         {subtotal >= 5000 && !couponError && (
-                            <p className="text-sm text-green-600 mt-2">
+                            <p className="text-xs text-gray-60 mt-2">
                                 Use code "SANTA666" for 10% off on orders above ₹5000
                             </p>
                         )}
