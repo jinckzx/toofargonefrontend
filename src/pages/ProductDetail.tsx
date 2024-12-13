@@ -423,13 +423,13 @@ const SizeButton: React.FC<SizeButtonProps> = ({ size, isSelected, onClick }) =>
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
     onClick={onClick}
-    className={`relative w-9 h-9 rounded-full ${
+    className={`relative w-6 h-6 rounded-full ${
       isSelected 
         ? 'bg-black text-white' 
         : 'bg-white text-black border-2 border-black hover:bg-black/5'
     } transition-all duration-300`}
   >
-    <span className="absolute inset-0 flex items-center justify-center font-medium">
+    <span className="absolute inset-0 flex items-center justify-center font-sm">
       {size}
     </span>
     {isSelected && (
