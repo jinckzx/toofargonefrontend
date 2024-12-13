@@ -46,6 +46,7 @@ export default function Checkout() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [couponCode, setCouponCode] = useState('');
   const [couponApplied, setCouponApplied] = useState(false);
+  const [couponError, setCouponError] = useState(''); // Track invalid coupon message
   const [shippingInfo, setShippingInfo] = useState<ShippingInfo>({ distance: 0, cost: 0 });
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -89,8 +90,10 @@ export default function Checkout() {
     e.preventDefault();
     if (couponCode.toLowerCase() === 'save10' && subtotal >= 5000) {
       setCouponApplied(true);
+      setCouponError(''); // Clear error if coupon is valid
     } else {
-      alert('Invalid coupon code or minimum order value not met (₹5000)');
+      setCouponApplied(false);
+      setCouponError('Invalid coupon code or minimum order value not met (₹5000)'); // Set error message
     }
   };
 
@@ -145,7 +148,7 @@ export default function Checkout() {
       const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/checkout/create-order`, {
         formData: sanitizedFormData,
         cartItems,
-        totalAmount: calculateTotal(),
+        totalAmount: total,
       });
 
       // Proceed with Razorpay payment
@@ -159,11 +162,6 @@ export default function Checkout() {
   };
 
   const handlePayment = async (orderData: any) => {
-    if (!window.Razorpay) {
-      alert('Razorpay is not loaded properly.');
-      return;
-    }
-
     const options = {
       key: orderData.keyId,
       amount: orderData.amount,
@@ -184,7 +182,7 @@ export default function Checkout() {
             navigate('/order-confirmation', {
               state: {
                 orderId: orderData.orderId,
-                amount: calculateTotal(),
+                amount: total,
               },
             });
           }
@@ -206,8 +204,6 @@ export default function Checkout() {
     const razorpayInstance = new window.Razorpay(options);
     razorpayInstance.open();
   };
-
-  const total = calculateTotal();
 
   return (
     <div className="pt-36 min-h-screen">
@@ -234,7 +230,7 @@ export default function Checkout() {
           >
             <h2 className="text-xl font-light">Shipping Information</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
-              {[
+              {[ 
                 { label: 'Full Name', name: 'name', type: 'text' },
                 { label: 'Email', name: 'email', type: 'email' },
                 { label: 'Phone', name: 'phone', type: 'tel' },
@@ -250,68 +246,92 @@ export default function Checkout() {
                     name={field.name}
                     value={formData[field.name as keyof FormData]}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    className="w-full border p-2 rounded-md"
+                    required
                   />
                   {errors[field.name as keyof FormData] && (
-                    <p className="text-sm text-red-500 mt-1">{errors[field.name as keyof FormData]}</p>
+                    <p className="text-red-500 text-sm mt-1">{errors[field.name as keyof FormData]}</p>
                   )}
                 </div>
               ))}
-              <div className="flex justify-between items-center">
-                <form onSubmit={handleCouponSubmit}>
-                  <input
-                    type="text"
-                    value={couponCode}
-                    onChange={(e) => setCouponCode(e.target.value)}
-                    placeholder="Coupon code"
-                    className="w-full md:w-40 p-2 border border-gray-300 rounded-md"
-                  />
-                  <button
-                    type="submit"
-                    className="ml-2 bg-black text-white px-4 py-2 rounded-md"
-                  >
-                    Apply
-                  </button>
-                </form>
-                {couponApplied && <span className="text-sm text-green-500">Coupon applied!</span>}
-              </div>
+              <button
+                type="submit"
+                className="w-full bg-black text-white py-3 hover:bg-gray-800 transition-colors rounded-md"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Processing...' : `Pay ₹${total.toFixed(2)}`}
+              </button>
             </form>
           </motion.div>
 
-          {/* Right side - Summary */}
+          {/* Right side - Order Summary and Coupon */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             className="space-y-6"
           >
-            <h2 className="text-xl font-light">Order Summary</h2>
-            <div className="space-y-4">
-              <div className="flex justify-between">
-                <span className="text-sm">Subtotal:</span>
-                <span className="font-medium">₹{subtotal.toFixed(2)}</span>
+            {/* Order Summary */}
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <h2 className="text-xl font-light mb-4">Order Summary</h2>
+              <div className="space-y-4">
+                {cartItems.map((item) => (
+                  <div key={item.id} className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      <img
+                        src={item.imageURL}
+                        alt={item.name}
+                        className="w-16 h-16 object-cover"
+                      />
+                      <span className="text-sm text-gray-800">{item.name}</span>
+                      <span className="text-xs text-gray-500">{item.size}</span>
+                    </div>
+                    <span className="text-sm text-gray-800">₹{(item.price * item.quantity).toFixed(2)}</span>
+                  </div>
+                ))}
+                <hr className="my-4" />
+                <div className="flex justify-between text-sm text-gray-800">
+                  <span>Subtotal</span>
+                  <span>₹{subtotal.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between text-sm text-gray-800">
+                  <span>Shipping Cost</span>
+                  <span>₹{shippingInfo.cost.toFixed(2)}</span>
+                </div>
+                {couponApplied && subtotal >= 5000 && (
+                  <div className="flex justify-between text-sm text-gray-800">
+                    <span>Coupon Applied (10% off)</span>
+                    <span>-₹{(subtotal * 0.1).toFixed(2)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between text-xl font-semibold text-gray-900">
+                  <span>Total</span>
+                  <span>₹{calculateTotal().toFixed(2)}</span>
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span className="text-sm">Shipping:</span>
-                <span className="font-medium">₹{shippingInfo.cost.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-sm">Total:</span>
-                <span className="font-medium">₹{total.toFixed(2)}</span>
-              </div>
-              <button
-                onClick={handleSubmit}
-                className="w-full bg-black text-white py-3 rounded-md mt-4"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Processing...' : 'Proceed to Payment'}
-              </button>
             </div>
+
+            {/* Coupon Code */}
+            <form onSubmit={handleCouponSubmit} className="space-y-4">
+              <div className="flex items-center space-x-4">
+                <input
+                  type="text"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                  className="w-full border p-2 rounded-md"
+                  placeholder="Enter coupon code"
+                />
+                <button
+                  type="submit"
+                  className="bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800"
+                >
+                  Apply
+                </button>
+              </div>
+              {couponError && <p className="text-red-500 text-sm">{couponError}</p>}
+            </form>
           </motion.div>
         </div>
       </div>
     </div>
   );
 }
-
-
-
