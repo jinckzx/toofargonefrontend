@@ -157,14 +157,7 @@ export default function ProductDetail() {
         onClose={() => setShowCartPreview(false)}
         cartItems={cartItems}
       />
-      <motion.button
-  whileHover={{ scale: 1.02 }}
-  whileTap={{ scale: 0.98 }}
-  onClick={() => console.log('New Button Clicked')} // Replace this with your desired functionality
-  className="w-full py-3 px-4 text-sm bg-black text-white rounded-lg font-medium transition-all duration-300 border-2 border-transparent hover:border-black hover:bg-white hover:text-black mt-4"
->
-  New Black Button
-</motion.button>
+      
 
       <div className="max-w-7xl mx-auto px-4 pt-36 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative">
