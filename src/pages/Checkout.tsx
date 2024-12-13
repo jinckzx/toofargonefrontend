@@ -154,7 +154,7 @@ export default function Checkout() {
     useEffect(() => {
         if (formData.state) {
             const distance = calculateDistance(formData.state);
-            const shippingCost = subtotal >= 2500 ? 0 : 90 + (distance / 70);
+            const shippingCost = subtotal >= 2500 ? 0 : 90 + (distance / 80);
             setShippingInfo({ distance, cost: shippingCost });
         }
     }, [formData.state, subtotal]);
