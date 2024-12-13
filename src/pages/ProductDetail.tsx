@@ -423,7 +423,7 @@ const SizeButton: React.FC<SizeButtonProps> = ({ size, isSelected, onClick }) =>
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
     onClick={onClick}
-    className={`relative w-14 h-14 rounded-full ${
+    className={`relative w-9 h-9 rounded-full ${
       isSelected 
         ? 'bg-black text-white' 
         : 'bg-white text-black border-2 border-black hover:bg-black/5'
