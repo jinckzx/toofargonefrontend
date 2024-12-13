@@ -406,7 +406,7 @@ export default function Checkout() {
                        </div>
                            {/* Coupon Code Section */}
                     <div className="bg-gray-50 p-6 rounded-lg">
-                        <h3 className="text-sm font-light mb-3">Have a Coupon?</h3>
+                        <h4 className="text-sm font-light mb-3">Have a Coupon?</h4>
                         <form onSubmit={handleCouponSubmit} className="flex gap-2">
                             <input 
                                 type="text" 
@@ -416,11 +416,11 @@ export default function Checkout() {
                                     setCouponError(''); // Clear error when user starts typing
                                 }} 
                                 placeholder="Enter coupon code" 
-                                className="flex-1 border p-2 rounded-md" 
+                                className="flex-1 border p-2 rounded-sm text-sm" 
                             />
                             <button 
                                 type="submit" 
-                                className="bg-black text-white px-2 py-1 rounded-md hover:bg-gray-800 transition-colors"
+                                className="bg-black text-white text-sm px-2 py-1 rounded-sm hover:bg-gray-800 transition-colors"
                             >
                                 Apply
                             </button>
