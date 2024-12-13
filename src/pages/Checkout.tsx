@@ -326,7 +326,7 @@ export default function Checkout() {
                                                required
                                            />
                                            {isDropdownOpen && filteredStates.length > 0 && (
-                                               <ul className="absolute z-10 bg-white border border-gray-300 rounded-md mt-1 w-full">
+                                               <ul className="absolute z-10 bg-white border border-gray-300 rounded-md mt-1 w-48">
                                                    {filteredStates.map((state) => (
                                                        <li
                                                            key={state}
