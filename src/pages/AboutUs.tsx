@@ -69,10 +69,10 @@ export default function AboutUs() {
         )}
       </AnimatePresence>
 {/*desktop*/}
-      <div className="pt-36 max-w-7xl mx-20 px-4 sm:px-6 lg:px-8">
+      <div className="pt-36 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex gap-8">
           {/* Desktop Sidebar */}
-          <div className="hidden md:block w-24 flex-shrink-0">
+          <div className="hidden md:block w-36 -ml-20 flex-shrink-0 ">
             <div className="sticky top-28 space-y-6">
               <div className="space-y-2 pt-8 text-left">
                 {menuItems.map((item) => (
