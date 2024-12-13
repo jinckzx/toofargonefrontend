@@ -70,7 +70,7 @@ const distances: { [key: string]: number } = {
     'Delhi': 1500,                    // Approximate distance from Thane to Delhi
     'Puducherry': 1400,               // Approximate distance from Thane to Puducherry
     'Ladakh': 2800,                   // Approximate distance from Thane to Ladakh
-    'Jammu & Kashmir': 2200,          // Approximate distance from Thane to Jammu & Kashmir
+    'Jammu & Kashmir': 3000,          // Approximate distance from Thane to Jammu & Kashmir
 };
 
     return distances[state] || 750;
