@@ -213,7 +213,7 @@ className={`inline-block px-3 py-1 text-xs font-medium ${
   
 product.instock === 'Out of Stock' 
     ? 'bg-red-100 text-red-800' 
-    : 'bg-black-100 text-black-800'}
+    : 'bg-gray-100 text-gray-800'}
 `}
 
             >
