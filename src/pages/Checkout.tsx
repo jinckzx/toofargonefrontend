@@ -406,7 +406,7 @@ export default function Checkout() {
                        </div>
                            {/* Coupon Code Section */}
                     <div className="bg-gray-50 p-6 rounded-lg">
-                        <h3 className="text-lg font-light mb-3">Have a Coupon?</h3>
+                        <h3 className="text-sm font-light mb-3">Have a Coupon?</h3>
                         <form onSubmit={handleCouponSubmit} className="flex gap-2">
                             <input 
                                 type="text" 
@@ -420,7 +420,7 @@ export default function Checkout() {
                             />
                             <button 
                                 type="submit" 
-                                className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                                className="bg-black text-white px-2 py-1 rounded-md hover:bg-gray-800 transition-colors"
                             >
                                 Apply
                             </button>
