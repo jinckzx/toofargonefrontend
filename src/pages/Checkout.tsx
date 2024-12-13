@@ -392,7 +392,7 @@ export default function Checkout() {
                                            {couponApplied && subtotal >= 5000 && (
                   <div className="flex justify-between text-xs">
                     <span>Discount</span>
-                    <span>-₹{(subtotal() * 0.1).toFixed(2)}</span>
+                    <span>-₹{(calculateTotal() * 0.1).toFixed(2)}</span>
                   </div>
                 )}
                            {/* Total Calculation */}
