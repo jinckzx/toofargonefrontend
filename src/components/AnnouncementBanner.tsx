@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 const announcements = [
-  "FREE DOMESTIC SHIPPING",
-  "USE CODE \"TFG200\" ON ORDERS ABOVE 2500"
+  "FREE DOMESTIC SHIPPING ON ORDERS ABOVE 2000",
+  " 10% OFF : USE CODE \"SANTA666\" ON ORDERS ABOVE 5000 "
 ];
 
 export default function AnnouncementBanner() {
@@ -11,7 +11,7 @@ export default function AnnouncementBanner() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % announcements.length);
-    }, 3000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
