@@ -384,15 +384,15 @@ export default function Checkout() {
                                </div>
                            </div>
                            {formData.state && (
-                               <div className="flex justify-between text-sm">
+                               <div className="flex justify-between text-xs">
                                    <span>Shipping </span>
                                    <span>{shippingInfo.cost === 0 ? "FREE" : `₹${shippingInfo.cost.toFixed(2)}`}</span>
                                </div>
                            )}
                                            {couponApplied && subtotal >= 5000 && (
-                  <div className="flex justify-between text-green-600">
-                    <span>Discount (10%)</span>
-                    <span>-₹{(calculateTotal() * 0.1).toFixed(2)}</span>
+                  <div className="flex justify-between text-xs">
+                    <span>Discount</span>
+                    <span>-₹{(subtotal() * 0.1).toFixed(2)}</span>
                   </div>
                 )}
                            {/* Total Calculation */}
