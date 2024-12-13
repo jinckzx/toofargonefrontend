@@ -1,7 +1,7 @@
 
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react';
+import { Link } from 'react-router-dom';
 import { X } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
