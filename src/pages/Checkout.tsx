@@ -360,19 +360,19 @@ export default function Checkout() {
 
                    {/* Order Summary */}
                    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="bg-gray-50 p-6 rounded-lg">
-                       <h2 className="text-xl font-light mb-4">Order Summary</h2>
+                       <h2 className="text-lg font-light mb-4">Order Summary</h2>
                        <div className="space-y-4">
                            {cartItems.map((item) => (
                                <div key={item.id} className="flex items-center justify-between">
                                    <div className="flex items-center space-x-4">
                                        <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded-md" />
                                        <div>
-                                           <span className="block font-medium">{item.name}</span>
+                                           <span className="block font-medium text-sm">{item.name}</span>
                                            {item.size && (
                                                <span className="text-gray-500 text-xs">Size:{item.size}</span>
                                            )}
                                         
-                                           <span className="block">Quantity:{item.quantity}</span>
+                                           <span className="block text-xs">Quantity:{item.quantity}</span>
                                        </div>
                                    </div>
                                    <span>₹{(item.price * item.quantity).toFixed(2)}</span>
@@ -398,7 +398,7 @@ export default function Checkout() {
                 )}
                            {/* Total Calculation */}
                            <div className="border-t pt-4 mt-4">
-                               <div className="flex justify-between font-medium text-lg">
+                               <div className="flex justify-between font-medium text-sm">
                                    <span>Total</span>
                                    <span>₹{calculateTotal().toFixed(2)}</span>
                                </div>
