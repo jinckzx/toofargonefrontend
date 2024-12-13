@@ -399,7 +399,7 @@ export default function Checkout() {
                            </div>
                            {formData.state && (
                                <div className="flex justify-between text-sm">
-                                   <span>Shipping ({shippingInfo.distance}km)</span>
+                                   <span>Shipping </span>
                                    <span>{shippingInfo.cost === 0 ? "FREE" : `₹${shippingInfo.cost.toFixed(2)}`}</span>
                                </div>
                            )}
