@@ -569,170 +569,128 @@ export default function ProductDetail() {
   };
 
   return (
-    <motion.div 
+ <motion.div 
       className="min-h-screen bg-white"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.3 }}
     >
       <motion.button
         onClick={() => navigate('/shop')}
-        className="fixed top-36 left-8 z-10 flex items-center gap-2 px-6 py-3 text-sm font-medium text-gray-700 bg-white/90 backdrop-blur-md rounded-full shadow-lg hover:bg-black hover:text-white transition-all duration-300 border border-gray-200"
-        whileHover={{ scale: 1.05, x: -5 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
+        className="fixed top-24 left-4 z-10 flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 bg-white/80 backdrop-blur-sm rounded-full shadow-sm hover:bg-black hover:text-white transition-all duration-300 border border-gray-100"
+        whileHover={{ scale: 1.02, x: -2 }}
+        whileTap={{ scale: 0.98 }}
       >
-        <ArrowLeft className="w-4 h-4" />
-        Back to Shop
+        <ArrowLeft className="w-3 h-3" />
+        Back
       </motion.button>
 
-      <CartPreview
-        isOpen={showCartPreview}
-        onClose={() => setShowCartPreview(false)}
-        cartItems={cartItems}
-      />
+      <CartPreview isOpen={showCartPreview} onClose={() => setShowCartPreview(false)} cartItems={cartItems} />
 
-      <div className="max-w-7xl mx-auto px-4 pt-36 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 relative">
-          <ProductImageGallery
-            images={product.images}
-            selectedImage={selectedImage}
-            productTitle={product.productTitle}
-            onImageClick={handleImageClick}
-            onZoomMove={handleZoomMove}
-            onZoomLeave={handleZoomLeave}
-            onFullScreenToggle={handleFullScreenToggle}
-            zoom={zoom}
-          />
+      <div className="max-w-6xl mx-auto px-3 pt-28 pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 relative">
+          <ProductImageGallery {...imageGalleryProps} />
 
           <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="space-y-8 lg:pl-8 backdrop-blur-sm bg-white/80 p-8 rounded-2xl"
+            className="space-y-3 lg:pl-3 backdrop-blur-sm bg-white/90 p-3 rounded-lg shadow-sm"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            <motion.h1 
-              variants={itemVariants}
-              className="text-lg lg:text-xl font-bold text-gray-900"
-            >
-              {product.productTitle}
-            </motion.h1>
+            <h1 className="text-sm font-medium text-gray-900">{product.productTitle}</h1>
 
-            <motion.div 
-              variants={itemVariants}
-              className="flex items-baseline space-x-2"
-            >
+            <div className="flex items-baseline space-x-2">
               {product.price !== product.discountedPrice && (
-                <p className="text-lg text-gray-500 line-through">₹{product.price}</p>
+                <p className="text-xs text-gray-400 line-through">₹{product.price}</p>
               )}
-              <p className="text-lg lg:text-2xl font-bold">₹{product.discountedPrice}</p>
-            </motion.div>
+              <p className="text-sm font-medium">₹{product.discountedPrice}</p>
+            </div>
 
-            <motion.div
-              variants={itemVariants}
-              className="flex items-center space-x-2"
-            >
-              <span className={`px-4 py-0.5 rounded-full text-xs font-medium ${
-                product.instock === 'Out of Stock'
-                  ? 'bg-red-100 text-red-800'
-                  : 'bg-green-100 text-green-800'
-              } backdrop-blur-sm`}>
-                {product.instock}
-              </span>
-            </motion.div>
+            <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-medium ${
+              product.instock === 'Out of Stock'
+                ? 'bg-red-50 text-red-600'
+                : 'bg-green-50 text-green-600'
+            } backdrop-blur-sm`}>
+              {product.instock}
+            </span>
 
-            <motion.div 
-              variants={itemVariants}
-              className="space-y-1"
-            >
-              <h3 className="text-xs font-medium text-gray-700">Select Size</h3>
-              <div className="flex flex-wrap gap-4">
+            <div className="space-y-1.5 pt-2">
+              <p className="text-[10px] font-medium text-gray-500">Select Size</p>
+              <div className="flex flex-wrap gap-1.5">
                 {['S', 'M', 'L', 'XL', 'XXL'].map((size) => (
-                  <SizeButton
+                  <motion.button
                     key={size}
-                    size={size}
-                    isSelected={selectedSize === size}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     onClick={() => {
                       setSelectedSize(size);
                       setSizeError('');
                     }}
-                  />
+                    className={`w-8 h-8 rounded-full text-xs font-medium transition-all duration-200 ${
+                      selectedSize === size 
+                        ? 'bg-black text-white shadow-md' 
+                        : 'bg-white text-black border border-gray-200 hover:border-black'
+                    }`}
+                  >
+                    {size}
+                  </motion.button>
                 ))}
               </div>
               {sizeError && (
-                <motion.p 
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-red-500 text-xs mt-2"
-                >
-                  {sizeError}
-                </motion.p>
+                <p className="text-[10px] text-red-500">{sizeError}</p>
               )}
-            </motion.div>
+            </div>
 
-            <motion.p
-              variants={itemVariants}
-              className="text-gray-600 text-sm leading-relaxed"
-            >
+            <p className="text-[11px] leading-relaxed text-gray-600 pt-1">
               {product.prodDesc}
-            </motion.p>
+            </p>
 
-            <motion.div 
-              variants={itemVariants}
-              className="space-y-1"
-            >
-              <label className="text-xs font-medium text-gray-700">Quantity</label>
-              <div className="inline-flex items-center space-x-4 bg-gray-50 rounded-full px-4 py-2">
+            <div className="space-y-1.5">
+              <p className="text-[10px] font-medium text-gray-500">Quantity</p>
+              <div className="inline-flex items-center space-x-3 bg-gray-50/80 rounded-full px-2 py-1">
                 <motion.button
                   whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileTap={{ scale: 0.9 }}
                   onClick={() => handleQuantityChange(-1)}
-                  className="p-2 rounded-full hover:bg-black hover:text-white transition-all duration-300"
+                  className="p-1 rounded-full hover:bg-black hover:text-white transition-all duration-200"
                 >
                   <Minus className="w-2 h-2" />
                 </motion.button>
-                <span className="text-sm font-medium w-12 text-center">{quantity}</span>
+                <span className="text-xs font-medium w-6 text-center">{quantity}</span>
                 <motion.button
                   whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileTap={{ scale: 0.9 }}
                   onClick={() => handleQuantityChange(1)}
-                  className="p-2 rounded-full hover:bg-black hover:text-white transition-all duration-300"
+                  className="p-1 rounded-full hover:bg-black hover:text-white transition-all duration-200"
                 >
                   <Plus className="w-2 h-2" />
                 </motion.button>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div 
-              variants={itemVariants}
-              className="space-y-4 pt-6"
-            >
+            <div className="space-y-1.5 pt-3">
               <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
                 onClick={handleAddToCart}
-                className="w-full py-4 text-base bg-black text-white rounded-full font-medium transition-all duration-300 hover:shadow-xl hover:shadow-black/20"
+                className="w-full py-1.5 text-xs bg-black text-white rounded-full font-medium transition-all duration-200 hover:shadow-md"
               >
                 Add to Cart
               </motion.button>
 
               <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
                 onClick={handleBuyNow}
-                className="w-full py-4 text-base bg-white text-black border-2 border-black rounded-full font-medium transition-all duration-300 hover:bg-black hover:text-white hover:shadow-xl hover:shadow-black/20"
+                className="w-full py-1.5 text-xs bg-white text-black border border-black rounded-full font-medium transition-all duration-200 hover:bg-black hover:text-white hover:shadow-md"
               >
                 Buy Now
               </motion.button>
-            </motion.div>
+            </div>
 
-            <motion.div 
-              variants={itemVariants}
-              className="space-y-4 border-t border-gray-200 pt-8"
-            >
-              <h3 className="text-sm ">Product Details</h3>
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2 border-t border-gray-100 pt-3">
+              <p className="text-[10px] font-medium text-gray-500">Product Details</p>
+              <div className="grid grid-cols-2 gap-1.5">
                 {[
                   { label: 'Fit', value: product.fit },
                   { label: 'Gender', value: product.gender },
@@ -743,17 +701,17 @@ export default function ProductDetail() {
                 ].map((detail, index) => (
                   <motion.div
                     key={detail.label}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="group p-4 rounded-xl bg-gray-50 hover:bg-black hover:text-white transition-all duration-300"
+                    transition={{ delay: index * 0.05 }}
+                    className="group p-1.5 rounded-md bg-gray-50/80 hover:bg-black hover:text-white transition-all duration-200"
                   >
-                    <p className="text-xs text-gray-500 group-hover:text-gray-300">{detail.label}</p>
-                    <p className="text-xs font-small mt-1">{detail.value}</p>
+                    <p className="text-[9px] text-gray-400 group-hover:text-gray-300">{detail.label}</p>
+                    <p className="text-[10px] font-medium">{detail.value}</p>
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -761,7 +719,7 @@ export default function ProductDetail() {
       <AnimatePresence>
         {showFullScreen && (
           <motion.div 
-            className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex items-center justify-center"
+            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -770,14 +728,14 @@ export default function ProductDetail() {
               whileHover={{ scale: 1.1, rotate: 90 }}
               whileTap={{ scale: 0.9 }}
               onClick={handleFullScreenToggle}
-              className="absolute top-8 right-8 text-white p-3 hover:bg-white/10 rounded-full transition-all duration-300"
+              className="absolute top-3 right-3 text-white p-1.5 hover:bg-white/10 rounded-full transition-all duration-200"
             >
-              <X className="w-6 h-6" />
+              <X className="w-3 h-3" />
             </motion.button>
             <motion.img
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
+              exit={{ scale: 0.9, opacity: 0 }}
               src={selectedImage || product.images[0]}
               alt="Full screen view"
               className="max-w-[90vw] max-h-[90vh] object-contain"
@@ -788,3 +746,222 @@ export default function ProductDetail() {
     </motion.div>
   );
 }
+//     <motion.div 
+//       className="min-h-screen bg-white"
+//       initial={{ opacity: 0 }}
+//       animate={{ opacity: 1 }}
+//       transition={{ duration: 0.5 }}
+//     >
+//       <motion.button
+//         onClick={() => navigate('/shop')}
+//         className="fixed top-36 left-8 z-10 flex items-center gap-2 px-6 py-3 text-sm font-medium text-gray-700 bg-white/90 backdrop-blur-md rounded-full shadow-lg hover:bg-black hover:text-white transition-all duration-300 border border-gray-200"
+//         whileHover={{ scale: 1.05, x: -5 }}
+//         whileTap={{ scale: 0.95 }}
+//         initial={{ opacity: 0, x: -20 }}
+//         animate={{ opacity: 1, x: 0 }}
+//       >
+//         <ArrowLeft className="w-4 h-4" />
+//         Back to Shop
+//       </motion.button>
+
+//       <CartPreview
+//         isOpen={showCartPreview}
+//         onClose={() => setShowCartPreview(false)}
+//         cartItems={cartItems}
+//       />
+
+//       <div className="max-w-7xl mx-auto px-4 pt-36 pb-16">
+//         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 relative">
+//           <ProductImageGallery
+//             images={product.images}
+//             selectedImage={selectedImage}
+//             productTitle={product.productTitle}
+//             onImageClick={handleImageClick}
+//             onZoomMove={handleZoomMove}
+//             onZoomLeave={handleZoomLeave}
+//             onFullScreenToggle={handleFullScreenToggle}
+//             zoom={zoom}
+//           />
+
+//           <motion.div 
+//             variants={containerVariants}
+//             initial="hidden"
+//             animate="visible"
+//             className="space-y-8 lg:pl-8 backdrop-blur-sm bg-white/80 p-8 rounded-2xl"
+//           >
+//             <motion.h1 
+//               variants={itemVariants}
+//               className="text-lg lg:text-xl font-bold text-gray-900"
+//             >
+//               {product.productTitle}
+//             </motion.h1>
+
+//             <motion.div 
+//               variants={itemVariants}
+//               className="flex items-baseline space-x-2"
+//             >
+//               {product.price !== product.discountedPrice && (
+//                 <p className="text-lg text-gray-500 line-through">₹{product.price}</p>
+//               )}
+//               <p className="text-lg lg:text-2xl font-bold">₹{product.discountedPrice}</p>
+//             </motion.div>
+
+//             <motion.div
+//               variants={itemVariants}
+//               className="flex items-center space-x-2"
+//             >
+//               <span className={`px-4 py-0.5 rounded-full text-xs font-medium ${
+//                 product.instock === 'Out of Stock'
+//                   ? 'bg-red-100 text-red-800'
+//                   : 'bg-green-100 text-green-800'
+//               } backdrop-blur-sm`}>
+//                 {product.instock}
+//               </span>
+//             </motion.div>
+
+//             <motion.div 
+//               variants={itemVariants}
+//               className="space-y-1"
+//             >
+//               <h3 className="text-xs font-medium text-gray-700">Select Size</h3>
+//               <div className="flex flex-wrap gap-4">
+//                 {['S', 'M', 'L', 'XL', 'XXL'].map((size) => (
+//                   <SizeButton
+//                     key={size}
+//                     size={size}
+//                     isSelected={selectedSize === size}
+//                     onClick={() => {
+//                       setSelectedSize(size);
+//                       setSizeError('');
+//                     }}
+//                   />
+//                 ))}
+//               </div>
+//               {sizeError && (
+//                 <motion.p 
+//                   initial={{ opacity: 0, y: -10 }}
+//                   animate={{ opacity: 1, y: 0 }}
+//                   className="text-red-500 text-xs mt-2"
+//                 >
+//                   {sizeError}
+//                 </motion.p>
+//               )}
+//             </motion.div>
+
+//             <motion.p
+//               variants={itemVariants}
+//               className="text-gray-600 text-sm leading-relaxed"
+//             >
+//               {product.prodDesc}
+//             </motion.p>
+
+//             <motion.div 
+//               variants={itemVariants}
+//               className="space-y-1"
+//             >
+//               <label className="text-xs font-medium text-gray-700">Quantity</label>
+//               <div className="inline-flex items-center space-x-4 bg-gray-50 rounded-full px-4 py-2">
+//                 <motion.button
+//                   whileHover={{ scale: 1.1 }}
+//                   whileTap={{ scale: 0.95 }}
+//                   onClick={() => handleQuantityChange(-1)}
+//                   className="p-2 rounded-full hover:bg-black hover:text-white transition-all duration-300"
+//                 >
+//                   <Minus className="w-2 h-2" />
+//                 </motion.button>
+//                 <span className="text-sm font-medium w-12 text-center">{quantity}</span>
+//                 <motion.button
+//                   whileHover={{ scale: 1.1 }}
+//                   whileTap={{ scale: 0.95 }}
+//                   onClick={() => handleQuantityChange(1)}
+//                   className="p-2 rounded-full hover:bg-black hover:text-white transition-all duration-300"
+//                 >
+//                   <Plus className="w-2 h-2" />
+//                 </motion.button>
+//               </div>
+//             </motion.div>
+
+//             <motion.div 
+//               variants={itemVariants}
+//               className="space-y-4 pt-6"
+//             >
+//               <motion.button
+//                 whileHover={{ scale: 1.02 }}
+//                 whileTap={{ scale: 0.98 }}
+//                 onClick={handleAddToCart}
+//                 className="w-full py-4 text-base bg-black text-white rounded-full font-medium transition-all duration-300 hover:shadow-xl hover:shadow-black/20"
+//               >
+//                 Add to Cart
+//               </motion.button>
+
+//               <motion.button
+//                 whileHover={{ scale: 1.02 }}
+//                 whileTap={{ scale: 0.98 }}
+//                 onClick={handleBuyNow}
+//                 className="w-full py-4 text-base bg-white text-black border-2 border-black rounded-full font-medium transition-all duration-300 hover:bg-black hover:text-white hover:shadow-xl hover:shadow-black/20"
+//               >
+//                 Buy Now
+//               </motion.button>
+//             </motion.div>
+
+//             <motion.div 
+//               variants={itemVariants}
+//               className="space-y-4 border-t border-gray-200 pt-8"
+//             >
+//               <h3 className="text-sm ">Product Details</h3>
+//               <div className="grid grid-cols-2 gap-4">
+//                 {[
+//                   { label: 'Fit', value: product.fit },
+//                   { label: 'Gender', value: product.gender },
+//                   { label: 'Material', value: product.material },
+//                   { label: 'Weight', value: product.fabricWeight },
+//                   { label: 'Construction', value: product.construction },
+//                   { label: 'Origin', value: product.origin }
+//                 ].map((detail, index) => (
+//                   <motion.div
+//                     key={detail.label}
+//                     initial={{ opacity: 0, y: 20 }}
+//                     animate={{ opacity: 1, y: 0 }}
+//                     transition={{ delay: index * 0.1 }}
+//                     className="group p-4 rounded-xl bg-gray-50 hover:bg-black hover:text-white transition-all duration-300"
+//                   >
+//                     <p className="text-xs text-gray-500 group-hover:text-gray-300">{detail.label}</p>
+//                     <p className="text-xs font-small mt-1">{detail.value}</p>
+//                   </motion.div>
+//                 ))}
+//               </div>
+//             </motion.div>
+//           </motion.div>
+//         </div>
+//       </div>
+
+//       <AnimatePresence>
+//         {showFullScreen && (
+//           <motion.div 
+//             className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex items-center justify-center"
+//             initial={{ opacity: 0 }}
+//             animate={{ opacity: 1 }}
+//             exit={{ opacity: 0 }}
+//           >
+//             <motion.button
+//               whileHover={{ scale: 1.1, rotate: 90 }}
+//               whileTap={{ scale: 0.9 }}
+//               onClick={handleFullScreenToggle}
+//               className="absolute top-8 right-8 text-white p-3 hover:bg-white/10 rounded-full transition-all duration-300"
+//             >
+//               <X className="w-6 h-6" />
+//             </motion.button>
+//             <motion.img
+//               initial={{ scale: 0.8, opacity: 0 }}
+//               animate={{ scale: 1, opacity: 1 }}
+//               exit={{ scale: 0.8, opacity: 0 }}
+//               src={selectedImage || product.images[0]}
+//               alt="Full screen view"
+//               className="max-w-[90vw] max-h-[90vh] object-contain"
+//             />
+//           </motion.div>
+//         )}
+//       </AnimatePresence>
+//     </motion.div>
+//   );
+// }
