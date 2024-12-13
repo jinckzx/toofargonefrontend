@@ -230,9 +230,42 @@ const navigate = useNavigate();
             className="space-y-6"
           >
             <h2 className="text-xl font-light">Shipping Information</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            
               {/* ... (keep existing form fields) ... */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {[
+                { label: 'Full Name', name: 'name', type: 'text' },
+                { label: 'Email', name: 'email', type: 'email' },
+                { label: 'Phone', name: 'phone', type: 'tel' },
+                { label: 'Address', name: 'address', type: 'text' },
+                { label: 'City', name: 'city', type: 'text' },
+                { label: 'State', name: 'state', type: 'text' },
+                { label: 'Pincode', name: 'pincode', type: 'text' },
+              ].map((field) => (
+                <div key={field.name}>
+                  <label className="block text-sm text-gray-600 mb-1">{field.label}</label>
+                  <input
+                    type={field.type}
+                    name={field.name}
+                    value={formData[field.name as keyof FormData]}
+                    onChange={handleInputChange}
+                    className="w-full border p-2 rounded-md"
+                    required
+                  />
+                  {errors[field.name as keyof FormData] && (
+                    <p className="text-red-500 text-sm mt-1">{errors[field.name as keyof FormData]}</p>
+                  )}
+                </div>
+              ))}
+              <button
+                type="submit"
+                className="w-full bg-black text-white py-3 hover:bg-gray-800 transition-colors rounded-md"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Processing...' : `Pay ₹${total.toFixed(2)}`}
+              </button>
             </form>
+            
           </motion.div>
 
           {/* Right side - Order Summary and Coupon */}
@@ -364,39 +397,39 @@ const navigate = useNavigate();
 //             className="space-y-6"
 //           >
 //             <h2 className="text-xl font-light">Shipping Information</h2>
-//             <form onSubmit={handleSubmit} className="space-y-4">
-//               {[
-//                 { label: 'Full Name', name: 'name', type: 'text' },
-//                 { label: 'Email', name: 'email', type: 'email' },
-//                 { label: 'Phone', name: 'phone', type: 'tel' },
-//                 { label: 'Address', name: 'address', type: 'text' },
-//                 { label: 'City', name: 'city', type: 'text' },
-//                 { label: 'State', name: 'state', type: 'text' },
-//                 { label: 'Pincode', name: 'pincode', type: 'text' },
-//               ].map((field) => (
-//                 <div key={field.name}>
-//                   <label className="block text-sm text-gray-600 mb-1">{field.label}</label>
-//                   <input
-//                     type={field.type}
-//                     name={field.name}
-//                     value={formData[field.name as keyof FormData]}
-//                     onChange={handleInputChange}
-//                     className="w-full border p-2 rounded-md"
-//                     required
-//                   />
-//                   {errors[field.name as keyof FormData] && (
-//                     <p className="text-red-500 text-sm mt-1">{errors[field.name as keyof FormData]}</p>
-//                   )}
-//                 </div>
-//               ))}
-//               <button
-//                 type="submit"
-//                 className="w-full bg-black text-white py-3 hover:bg-gray-800 transition-colors rounded-md"
-//                 disabled={isSubmitting}
-//               >
-//                 {isSubmitting ? 'Processing...' : `Pay ₹${total.toFixed(2)}`}
-//               </button>
-//             </form>
+            // <form onSubmit={handleSubmit} className="space-y-4">
+            //   {[
+            //     { label: 'Full Name', name: 'name', type: 'text' },
+            //     { label: 'Email', name: 'email', type: 'email' },
+            //     { label: 'Phone', name: 'phone', type: 'tel' },
+            //     { label: 'Address', name: 'address', type: 'text' },
+            //     { label: 'City', name: 'city', type: 'text' },
+            //     { label: 'State', name: 'state', type: 'text' },
+            //     { label: 'Pincode', name: 'pincode', type: 'text' },
+            //   ].map((field) => (
+            //     <div key={field.name}>
+            //       <label className="block text-sm text-gray-600 mb-1">{field.label}</label>
+            //       <input
+            //         type={field.type}
+            //         name={field.name}
+            //         value={formData[field.name as keyof FormData]}
+            //         onChange={handleInputChange}
+            //         className="w-full border p-2 rounded-md"
+            //         required
+            //       />
+            //       {errors[field.name as keyof FormData] && (
+            //         <p className="text-red-500 text-sm mt-1">{errors[field.name as keyof FormData]}</p>
+            //       )}
+            //     </div>
+            //   ))}
+            //   <button
+            //     type="submit"
+            //     className="w-full bg-black text-white py-3 hover:bg-gray-800 transition-colors rounded-md"
+            //     disabled={isSubmitting}
+            //   >
+            //     {isSubmitting ? 'Processing...' : `Pay ₹${total.toFixed(2)}`}
+            //   </button>
+            // </form>
 //           </motion.div>
 
 //           {/* Order Summary */}
