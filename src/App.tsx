@@ -19,19 +19,10 @@ import NotFound from './pages/NotFound';
 import TrackOrder from './pages/TrackOrder';
 import { CartProvider } from './context/CartContext';
 
-interface CartItem {
-  id: string;
-  name: string;
-  size: string;
-  quantity: number;
-  price: number;
-  image: string;
-}
-
 interface CartPreviewProps {
   isOpen: boolean;
   onClose: () => void;
-  cartItems: CartItem[];
+  cartItems: any[];
 }
 
 export function CartPreview({ isOpen, onClose, cartItems }: CartPreviewProps) {
@@ -43,71 +34,46 @@ export function CartPreview({ isOpen, onClose, cartItems }: CartPreviewProps) {
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: '100%', opacity: 0 }}
           transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-          className="fixed top-0 right-0 h-full w-full sm:w-80 bg-white shadow-lg z-50 overflow-y-auto flex flex-col"
+          className="fixed top-0 right-0 h-full w-80 bg-white shadow-lg z-50 overflow-y-auto"
         >
-          {/* Header */}
           <div className="p-4 border-b">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-semibold">Cart</h2>
               <button
                 onClick={onClose}
                 className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-                aria-label="Close"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
           </div>
-
-          {/* Cart Items */}
-          <div className="p-4 space-y-4 flex-1 overflow-y-auto">
-            {cartItems.length > 0 ? (
-              cartItems.map((item) => (
-                <motion.div
-                  key={`${item.id}-${item.size}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center space-x-4"
-                >
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-16 h-16 object-cover rounded"
-                  />
-                  <div className="flex-1">
-                    <h3 className="text-sm font-medium">{item.name}</h3>
-                    <p className="text-sm text-gray-500">Size: {item.size}</p>
-                    <p className="text-sm">Qty: {item.quantity}</p>
-                  </div>
-                  <p className="text-sm font-medium">₹{item.price}</p>
-                </motion.div>
-              ))
-            ) : (
-              <div className="text-center text-gray-500">
-                <p>Your cart is empty.</p>
-                <Link to="/products" className="mt-2 text-blue-500 underline">
-                  Shop Now
-                </Link>
-              </div>
-            )}
-          </div>
-
-          {/* Checkout Button */}
-          <div className="p-4 border-t">
-            <Link
-              to="/checkout"
-              className="block w-full py-3 px-4 text-center bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
-              onClick={onClose}
-            >
-              Proceed to Checkout
-            </Link>
+          <div className="p-4 space-y-4">
+            {cartItems.map((item) => (
+              <motion.div
+                key={`${item.id}-${item.size}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center space-x-4"
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-16 h-16 object-cover rounded"
+                />
+                <div className="flex-1">
+                  <h3 className="text-sm font-medium">{item.name}</h3>
+                  <p className="text-sm text-gray-500">Size: {item.size}</p>
+                  <p className="text-sm">Qty: {item.quantity}</p>
+                </div>
+                <p className="text-sm font-medium">₹{item.price}</p>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       )}
     </AnimatePresence>
   );
 }
-
 
 function App() {
   return (
