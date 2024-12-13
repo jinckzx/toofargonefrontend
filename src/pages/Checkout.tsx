@@ -389,6 +389,12 @@ export default function Checkout() {
                                    <span>{shippingInfo.cost === 0 ? "FREE" : `₹${shippingInfo.cost.toFixed(2)}`}</span>
                                </div>
                            )}
+                                           {couponApplied && subtotal >= 5000 && (
+                  <div className="flex justify-between text-green-600">
+                    <span>Discount (10%)</span>
+                    <span>-₹{(calculateTotal() * 0.1).toFixed(2)}</span>
+                  </div>
+                )}
                            {/* Total Calculation */}
                            <div className="border-t pt-4 mt-4">
                                <div className="flex justify-between font-medium text-lg">
@@ -760,12 +766,12 @@ export default function Checkout() {
 //                   </div>
 //                 )}
 
-//                 {couponApplied && subtotal >= 5000 && (
-//                   <div className="flex justify-between text-green-600">
-//                     <span>Discount (10%)</span>
-//                     <span>-₹{(calculateTotal() * 0.1).toFixed(2)}</span>
-//                   </div>
-//                 )}
+                // {couponApplied && subtotal >= 5000 && (
+                //   <div className="flex justify-between text-green-600">
+                //     <span>Discount (10%)</span>
+                //     <span>-₹{(calculateTotal() * 0.1).toFixed(2)}</span>
+                //   </div>
+                // )}
 
 //                 <div className="border-t pt-4 mt-4">
 //                   <div className="flex justify-between font-medium text-lg">
