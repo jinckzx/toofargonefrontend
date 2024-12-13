@@ -73,7 +73,7 @@ const distances: { [key: string]: number } = {
     'Jammu & Kashmir': 2200,          // Approximate distance from Thane to Jammu & Kashmir
 };
 
-    return distances[state] || 700;
+    return distances[state] || 750;
 };
 
 const states = [
