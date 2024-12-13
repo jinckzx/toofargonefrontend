@@ -72,7 +72,19 @@ export function CartPreview({ isOpen, onClose, cartItems }: CartPreviewProps) {
               </motion.div>
             ))}
           </div>
-         
+         <div className="p-4 border-t">
+            <div className="flex justify-between mb-4">
+              <span className="text-sm font-medium">Total</span>
+              <span className="text-sm font-semibold">₹{total.toFixed(2)}</span>
+            </div>
+            <Link 
+              to="#/cart"
+              className="w-full bg-black text-white py-2 rounded text-center block hover:bg-gray-800 transition-colors"
+            >
+              Continue to Checkout
+            </Link>
+          </div>
+
         </motion.div>
       )}
     </AnimatePresence>
