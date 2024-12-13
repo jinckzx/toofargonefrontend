@@ -378,7 +378,7 @@ export default function Checkout() {
                                    <span>₹{(item.price * item.quantity).toFixed(2)}</span>
                                </div>
                            ))}
-                           <div className="border-t pt-4">
+                           <div className="border-t pt-4 text-xs">
                                <div className="flex justify-between">
                                    <span>Subtotal</span>
                                    <span>₹{subtotal.toFixed(2)}</span>
