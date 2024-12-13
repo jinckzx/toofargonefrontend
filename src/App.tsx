@@ -78,7 +78,7 @@ export function CartPreview({ isOpen, onClose, cartItems }: CartPreviewProps) {
               <span className="text-sm font-semibold">₹{total.toFixed(2)}</span>
             </div>
             <Link 
-              to="#/cart"
+              to="/cart"
               className="w-full bg-black text-white py-2 rounded text-center block hover:bg-gray-800 transition-colors"
             >
               Continue to Checkout
