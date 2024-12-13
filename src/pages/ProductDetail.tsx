@@ -614,7 +614,7 @@ export default function ProductDetail() {
           >
             <motion.h1 
               variants={itemVariants}
-              className="text-3xl lg:text-4xl font-bold text-gray-900"
+              className="text-xl lg:text-2xl font-bold text-gray-900"
             >
               {product.productTitle}
             </motion.h1>
@@ -633,7 +633,7 @@ export default function ProductDetail() {
               variants={itemVariants}
               className="flex items-center space-x-2"
             >
-              <span className={`px-4 py-2 rounded-full text-sm font-medium ${
+              <span className={`px-4 py-0.5 rounded-full text-xs font-medium ${
                 product.instock === 'Out of Stock'
                   ? 'bg-red-100 text-red-800'
                   : 'bg-green-100 text-green-800'
@@ -646,7 +646,7 @@ export default function ProductDetail() {
               variants={itemVariants}
               className="space-y-4"
             >
-              <h3 className="text-sm font-medium text-gray-700">Select Size</h3>
+              <h3 className="text-xs font-medium text-gray-700">Select Size</h3>
               <div className="flex flex-wrap gap-4">
                 {['S', 'M', 'L', 'XL', 'XXL'].map((size) => (
                   <SizeButton
@@ -664,7 +664,7 @@ export default function ProductDetail() {
                 <motion.p 
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-red-500 text-sm mt-2"
+                  className="text-red-500 text-xs mt-2"
                 >
                   {sizeError}
                 </motion.p>
@@ -680,9 +680,9 @@ export default function ProductDetail() {
 
             <motion.div 
               variants={itemVariants}
-              className="space-y-3"
+              className="space-y-1"
             >
-              <label className="text-sm font-medium text-gray-700">Quantity</label>
+              <label className="text-xs font-medium text-gray-700">Quantity</label>
               <div className="inline-flex items-center space-x-4 bg-gray-50 rounded-full px-4 py-2">
                 <motion.button
                   whileHover={{ scale: 1.1 }}
@@ -692,7 +692,7 @@ export default function ProductDetail() {
                 >
                   <Minus className="w-4 h-4" />
                 </motion.button>
-                <span className="text-lg font-medium w-12 text-center">{quantity}</span>
+                <span className="text-sm font-medium w-12 text-center">{quantity}</span>
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -729,10 +729,10 @@ export default function ProductDetail() {
 
             <motion.div 
               variants={itemVariants}
-              className="space-y-6 border-t border-gray-200 pt-8"
+              className="space-y-4 border-t border-gray-200 pt-8"
             >
-              <h3 className="text-lg font-medium">Product Details</h3>
-              <div className="grid grid-cols-2 gap-6">
+              <h3 className="text-sm ">Product Details</h3>
+              <div className="grid grid-cols-2 gap-4">
                 {[
                   { label: 'Fit', value: product.fit },
                   { label: 'Gender', value: product.gender },
@@ -748,8 +748,8 @@ export default function ProductDetail() {
                     transition={{ delay: index * 0.1 }}
                     className="group p-4 rounded-xl bg-gray-50 hover:bg-black hover:text-white transition-all duration-300"
                   >
-                    <p className="text-sm text-gray-500 group-hover:text-gray-300">{detail.label}</p>
-                    <p className="text-sm font-medium mt-1">{detail.value}</p>
+                    <p className="text-xs text-gray-500 group-hover:text-gray-300">{detail.label}</p>
+                    <p className="text-xs font-small mt-1">{detail.value}</p>
                   </motion.div>
                 ))}
               </div>
