@@ -105,10 +105,8 @@ const states = [
     'Uttar Pradesh',
     'Uttarakhand',
     'West Bengal',
-    'Andaman and Nicobar Islands',
     'Chandigarh',
     'Dadra and Nagar Haveli and Daman and Diu',
-    'Lakshadweep',
     'Delhi',
     'Puducherry',
     'Ladakh',
@@ -155,7 +153,7 @@ export default function Checkout() {
     useEffect(() => {
         if (formData.state) {
             const distance = calculateDistance(formData.state);
-            const shippingCost = subtotal >= 2500 ? 0 : 90 + (distance / 85);
+            const shippingCost = subtotal >= 2500 ? 0 : 95 + (distance / 80);
             setShippingInfo({ distance, cost: shippingCost });
         }
     }, [formData.state, subtotal]);
