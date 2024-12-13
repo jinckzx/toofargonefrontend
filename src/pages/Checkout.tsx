@@ -63,14 +63,14 @@ const distances: { [key: string]: number } = {
     'Uttar Pradesh': 1400,            // Approximate distance from Thane to Uttar Pradesh
     'Uttarakhand': 1600,              // Approximate distance from Thane to Uttarakhand
     'West Bengal': 2200,              // Approximate distance from Thane to West Bengal
-    'Andaman and Nicobar Islands': 2300, // Approximate distance from Thane to Andaman and Nicobar Islands
+    'Andaman and Nicobar Islands': 8200, // Approximate distance from Thane to Andaman and Nicobar Islands
     'Chandigarh': 1600,               // Approximate distance from Thane to Chandigarh
     'Dadra and Nagar Haveli and Daman and Diu': 200, // Approximate distance from Thane to Dadra and Nagar Haveli and Daman and Diu
-    'Lakshadweep': 2200,              // Approximate distance from Thane to Lakshadweep
-    'Delhi': 1500,                    // Approximate distance from Thane to Delhi
-    'Puducherry': 1400,               // Approximate distance from Thane to Puducherry
-    'Ladakh': 4800,                   // Approximate distance from Thane to Ladakh
-    'Jammu & Kashmir': 4800,          // Approximate distance from Thane to Jammu & Kashmir
+    'Lakshadweep': 7200,              // Approximate distance from Thane to Lakshadweep
+    'Delhi': 1600,                    // Approximate distance from Thane to Delhi
+    'Puducherry': 3400,               // Approximate distance from Thane to Puducherry
+    'Ladakh': 6800,                   // Approximate distance from Thane to Ladakh
+    'Jammu & Kashmir': 6000,          // Approximate distance from Thane to Jammu & Kashmir
 };
 
     return distances[state] || 750;
