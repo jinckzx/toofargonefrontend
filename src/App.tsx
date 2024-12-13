@@ -19,10 +19,19 @@ import NotFound from './pages/NotFound';
 import TrackOrder from './pages/TrackOrder';
 import { CartProvider } from './context/CartContext';
 
+interface CartItem {
+  id: string;
+  name: string;
+  size: string;
+  quantity: number;
+  price: number;
+  image: string;
+}
+
 interface CartPreviewProps {
   isOpen: boolean;
   onClose: () => void;
-  cartItems: any[];
+  cartItems: CartItem[];
 }
 
 export function CartPreview({ isOpen, onClose, cartItems }: CartPreviewProps) {
@@ -34,7 +43,7 @@ export function CartPreview({ isOpen, onClose, cartItems }: CartPreviewProps) {
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: '100%', opacity: 0 }}
           transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-          className="fixed top-0 right-0 h-full w-80 bg-white shadow-lg z-50 overflow-y-auto flex flex-col"
+          className="fixed top-0 right-0 h-full w-full sm:w-80 bg-white shadow-lg z-50 overflow-y-auto flex flex-col"
         >
           {/* Header */}
           <div className="p-4 border-b">
@@ -43,6 +52,7 @@ export function CartPreview({ isOpen, onClose, cartItems }: CartPreviewProps) {
               <button
                 onClick={onClose}
                 className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                aria-label="Close"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -73,7 +83,12 @@ export function CartPreview({ isOpen, onClose, cartItems }: CartPreviewProps) {
                 </motion.div>
               ))
             ) : (
-              <p className="text-center text-gray-500">Your cart is empty.</p>
+              <div className="text-center text-gray-500">
+                <p>Your cart is empty.</p>
+                <Link to="/products" className="mt-2 text-blue-500 underline">
+                  Shop Now
+                </Link>
+              </div>
             )}
           </div>
 
@@ -92,6 +107,7 @@ export function CartPreview({ isOpen, onClose, cartItems }: CartPreviewProps) {
     </AnimatePresence>
   );
 }
+
 
 function App() {
   return (
