@@ -88,7 +88,7 @@ export function CartPreview({ isOpen, onClose, cartItems }: CartPreviewProps) {
       )}
     </AnimatePresence>
   );
-// }
+}
 // export function CartPreview({ isOpen, onClose, cartItems }: CartPreviewProps) {
 //   return (
 //     <AnimatePresence>
