@@ -210,10 +210,8 @@ export default function ProductDetail() {
                   : 'bg-blue-100 text-blue-800'
               } */}
 className={`inline-block px-3 py-1 text-xs font-medium ${
-  product.instock.trim()
-    ? 'rounded-full'
-    : ''
-} ${product.instock === 'Out of Stock' 
+  
+product.instock === 'Out of Stock' 
     ? 'bg-red-100 text-red-800' 
     : 'bg-blue-100 text-blue-800'}
 `}
