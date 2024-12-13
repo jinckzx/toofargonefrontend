@@ -199,7 +199,14 @@ export default function ProductDetail() {
               )}
               <p className="text-xl lg:text-2xl font-bold">₹{product.discountedPrice}</p>
             </motion.div>
-
+ <motion.p
+              className="text-gray-600 text-sm leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              {product.prodDesc}
+            </motion.p>
             <motion.span
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -254,14 +261,7 @@ product.instock === 'Out of Stock'
               )}
             </motion.div>
 
-            <motion.p
-              className="text-gray-600 text-sm leading-relaxed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              {product.prodDesc}
-            </motion.p>
+           
 
             <motion.div 
               className="space-y-2"
