@@ -409,10 +409,13 @@ export default function Checkout() {
                                    <p className="text-sm text-green-600 mt-2">Use code "SAVE10" for 10% off on orders above ₹5000</p>
                                )}
                            </div>
-                           {/* Submit Button */}
-                           <button type="submit" className="w-full bg-black text-white py-3 hover:bg-gray-800 transition-colors rounded-md">
-                               Pay ₹{calculateTotal().toFixed(2)}
-                           </button>
+                                       <button
+              onClick={handleSubmit}
+              className="w-full bg-black text-white py-3 hover:bg-gray-800 transition-colors rounded-md"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Processing...' : `Pay ₹${calculateTotal().toFixed(2)}`}
+            </button>
                    </motion.div>
 
                </div>
@@ -780,13 +783,13 @@ export default function Checkout() {
 //             </div>
 
 //             {/* Payment Button */}
-//             <button
-//               onClick={handleSubmit}
-//               className="w-full bg-black text-white py-3 hover:bg-gray-800 transition-colors rounded-md"
-//               disabled={isSubmitting}
-//             >
-//               {isSubmitting ? 'Processing...' : `Pay ₹${calculateTotal().toFixed(2)}`}
-//             </button>
+            // <button
+            //   onClick={handleSubmit}
+            //   className="w-full bg-black text-white py-3 hover:bg-gray-800 transition-colors rounded-md"
+            //   disabled={isSubmitting}
+            // >
+            //   {isSubmitting ? 'Processing...' : `Pay ₹${calculateTotal().toFixed(2)}`}
+            // </button>
 //           </div>
 //         </div>
 //       </div>
