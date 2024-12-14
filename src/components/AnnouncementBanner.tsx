@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const announcements = [
-  "FREE DOMESTIC SHIPPING ON ORDERS ABOVE 3000",
+  "FREE DOMESTIC SHIPPING ON ORDERS ABOVE 2500",
   " 10% OFF : USE CODE \"SANTA666\" ON ORDERS ABOVE 5000 "
 ];
 
