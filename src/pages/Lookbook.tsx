@@ -366,7 +366,7 @@ export default function Lookbook() {
                   <motion.img
                     src={post.imgUrl}
                     alt={`Lookbook item ${post.lookbookId}`}
-                    className="w-full h-full object-contain rounded-lg"
+                    className="w-full h-full object-cover rounded-lg"
                     layoutId={`image-${post.lookbookId}`}
                   />
                   <motion.div 
